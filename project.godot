@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Bobbing",
+"language": "GDScript",
+"path": "res://AnimationTests/Bobbing.gd"
+}, {
+"base": "Line2D",
+"class": "Hair",
+"language": "GDScript",
+"path": "res://AnimationTests/Hair.gd"
+}, {
+"base": "Node2D",
+"class": "WitchVisual",
+"language": "GDScript",
+"path": "res://AnimationTests/WitchVisual.gd"
+} ]
+_global_script_class_icons={
+"Bobbing": "",
+"Hair": "",
+"WitchVisual": ""
+}
+
 [application]
 
 config/name="ProcGen Jam"
@@ -16,6 +38,19 @@ config/icon="res://icon.png"
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+anim_test1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":73,"unicode":0,"echo":false,"script":null)
+ ]
+}
+anim_test2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":75,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [physics]
 
