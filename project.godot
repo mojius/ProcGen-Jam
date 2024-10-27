@@ -13,6 +13,10 @@ config_version=4
 config/name="ProcGen Jam"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/godot-sfxr-065bb3641b5a07efdb0ca6450d4c348ad0df3107/addons/godot_sfxr/plugin.cfg" )
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
