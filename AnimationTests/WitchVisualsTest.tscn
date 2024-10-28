@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://AnimationTests/WitchVisual.tscn" type="PackedScene" id=1]
+[ext_resource path="res://AnimationTests/Sprites/grid-light.png" type="Texture" id=2]
+[ext_resource path="res://AnimationTests/WitchVisualsTest.gd" type="Script" id=3]
+
+[node name="WitchVisualsTest" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1107.0
+margin_bottom = 679.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+
+[node name="WitchVisual" parent="." instance=ExtResource( 1 )]
+position = Vector2( 530, 315 )
