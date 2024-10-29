@@ -14,6 +14,31 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AnimationTests/Bobbing.gd"
 }, {
+"base": "Node2D",
+"class": "BossBody",
+"language": "GDScript",
+"path": "res://BossVisuals/Bodies/BossBody.gd"
+}, {
+"base": "Node2D",
+"class": "BossComponent",
+"language": "GDScript",
+"path": "res://BossVisuals/BossComponent.gd"
+}, {
+"base": "BossComponent",
+"class": "BossHead",
+"language": "GDScript",
+"path": "res://BossVisuals/Heads/BossHead.gd"
+}, {
+"base": "Node2D",
+"class": "BossVisual",
+"language": "GDScript",
+"path": "res://BossVisuals/BossVisual.gd"
+}, {
+"base": "BossComponent",
+"class": "CircleChain",
+"language": "GDScript",
+"path": "res://BossVisuals/Connectors/CircleChain.gd"
+}, {
 "base": "Line2D",
 "class": "Hair",
 "language": "GDScript",
@@ -26,6 +51,11 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bobbing": "",
+"BossBody": "",
+"BossComponent": "",
+"BossHead": "",
+"BossVisual": "",
+"CircleChain": "",
 "Hair": "",
 "WitchVisual": ""
 }
