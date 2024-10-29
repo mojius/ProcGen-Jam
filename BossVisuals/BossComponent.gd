@@ -15,7 +15,7 @@ var shake_timer := 0.0
 var shake_x_intensity := 1.0
 var shake_y_intensity := 1.0
 
-func set_shaking(state := true, x_intensity := 1.0, y_intensity := 1.0, duration := 99):
+func set_shaking(state := true, x_intensity := 1.0, y_intensity := 1.0, duration := 99.0):
 	is_shaking = state
 	shake_x_intensity = x_intensity
 	shake_y_intensity = y_intensity
@@ -30,5 +30,5 @@ func _process(delta):
 		
 		if shake_timer > 0:
 			shake_timer -= delta
-			if shake_timer <= 0:
-				is_shaking = false
+		if shake_timer <= 0:
+			is_shaking = false
