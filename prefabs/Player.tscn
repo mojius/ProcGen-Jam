@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://sprites/shapes/Circle 2.png" type="Texture" id=1]
 [ext_resource path="res://prefabs/Player.gd" type="Script" id=2]
-[ext_resource path="res://prefabs/ProjectilePlayer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prefabs/Spawner.gd" type="Script" id=4]
+[ext_resource path="res://prefabs/Spawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://AnimationTests/WitchVisual.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -30,7 +29,5 @@ shape = SubResource( 1 )
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
-[node name="Spawner" type="Position2D" parent="Player"]
-position = Vector2( 47, -8 )
-script = ExtResource( 4 )
-spawn_entity = ExtResource( 3 )
+[node name="Spawner" parent="Player" instance=ExtResource( 3 )]
+active_loop = false

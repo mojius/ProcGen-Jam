@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefabs/Spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/bg/abstract-black-and-white-grid-pattern-free-vector.jpg" type="Texture" id=2]
+[ext_resource path="res://prefabs/fast_projectile.tres" type="Resource" id=3]
+[ext_resource path="res://prefabs/slow_projectile.tres" type="Resource" id=4]
+
+[node name="WeaponsTests" type="Node2D"]
+
+[node name="Abstract-black-and-white-grid-pattern-free-vector" type="Sprite" parent="."]
+modulate = Color( 0.278431, 0.619608, 0.627451, 1 )
+texture = ExtResource( 2 )
+
+[node name="Spawner1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 64 )
+num_projectiles = 5
+spread_angle = 0.5
+
+[node name="Spawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 128 )
+num_projectiles = 5
+spread_angle = 0.05
+spread_delay = 0.4
+
+[node name="Spawner3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -128 )
+projectile_resource = ExtResource( 4 )
+
+[node name="Spawner4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -64 )
+projectile_resource = ExtResource( 3 )
