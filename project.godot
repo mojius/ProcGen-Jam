@@ -29,10 +29,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://BossVisuals/BossComponent.gd"
 }, {
-"base": "BossComponent",
+"base": "AnimatedPart",
 "class": "BossHead",
 "language": "GDScript",
-"path": "res://BossVisuals/Heads/BossHead.gd"
+"path": "res://BossVisuals/Parts/Heads/BossHead.gd"
+}, {
+"base": "BossPartResource",
+"class": "BossHeadResource",
+"language": "GDScript",
+"path": "res://BossVisuals/Parts/Heads/BossHeadResource.gd"
 }, {
 "base": "Resource",
 "class": "BossPartResource",
@@ -70,6 +75,7 @@ _global_script_class_icons={
 "BossBody": "",
 "BossComponent": "",
 "BossHead": "",
+"BossHeadResource": "",
 "BossPartResource": "",
 "BossVisual": "",
 "CircleChain": "",

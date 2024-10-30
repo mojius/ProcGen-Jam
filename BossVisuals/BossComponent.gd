@@ -10,6 +10,10 @@ func end_anim():
 		t.kill()
 	tweens.clear()
 	is_shaking = false
+	_end_anim()
+
+func _end_anim():
+	return
 
 var is_shaking := false
 var shake_timer := 0.0
@@ -51,7 +55,7 @@ func play_jiggle(duration := 1.0, original_scale := 2.0, jiggle_intensity := 1.0
 	
 	return squish_time + pause_time
 
-func play_stomp(duration := 3.5, lift_amount := 10.0, drop_amount := 5.0, drop_shake_intensity := 2.5) -> float:
+func play_stomp(duration := 3.5, lift_amount := 5.0, drop_amount := 5.0, drop_shake_intensity := 2.5) -> float:
 	var lift_time = duration * 0.22
 	var lift_pause_time = duration * 0.28
 	var drop_time = duration * 0.05
@@ -69,7 +73,7 @@ func play_stomp(duration := 3.5, lift_amount := 10.0, drop_amount := 5.0, drop_s
 	
 	return lift_time + lift_pause_time + drop_time + drop_pause_time
 
-func play_float(duration := 1, amplitude := 10.0):
+func play_float(duration := 1, amplitude := 5.0):
 	var tween = create_tween()
 	tween.tween_property(tween_target, "position", Vector2.UP * amplitude, duration * 0.5).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(tween_target, "position", Vector2.DOWN * amplitude, duration * 0.5).set_trans(Tween.TRANS_SINE)

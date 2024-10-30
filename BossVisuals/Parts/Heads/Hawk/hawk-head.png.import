@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hawk-jaw.png-a04e324981cdf3d4ad118d727deebdf0.stex"
+path="res://.import/hawk-head.png-d5156f036eceef715a72e2b102d96783.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BossVisuals/Heads/hawk-jaw.png"
-dest_files=[ "res://.import/hawk-jaw.png-a04e324981cdf3d4ad118d727deebdf0.stex" ]
+source_file="res://BossVisuals/Parts/Heads/Hawk/hawk-head.png"
+dest_files=[ "res://.import/hawk-head.png-d5156f036eceef715a72e2b102d96783.stex" ]
 
 [params]
 

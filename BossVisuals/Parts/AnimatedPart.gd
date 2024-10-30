@@ -2,8 +2,17 @@ extends BossComponent
 class_name AnimatedPart
 
 var data: BossPartResource = null
-onready var sprite: AnimatedSprite = $ShakeTarget/AnimatedSprite
-onready var original_scale: float = $ShakeTarget/AnimatedSprite.scale.x
+
+func set_data(new_data: BossPartResource):
+	data = new_data
+	play_idle_anim()
+	_set_data(new_data)
+	
+func _set_data(new_data: BossPartResource):
+	return
+
+onready var sprite: AnimatedSprite = $ShakeTarget/Sprite
+onready var original_scale: float = $ShakeTarget/Sprite.scale.x
 
 enum AnimationState {
 	idle,
@@ -26,7 +35,7 @@ var cur_anim_state = AnimationState.idle
 
 func _ready():
 	shake_target = $ShakeTarget
-	tween_target = $ShakeTarget/AnimatedSprite
+	tween_target = $ShakeTarget/Sprite
 
 var anim_timer := 0.0
 
@@ -38,7 +47,7 @@ func _process(delta):
 		if anim_timer <= 0:
 			var last_state = cur_anim_state
 			play_idle_anim()
-			emit_signal("on_anim_over", last_state)
+			emit_signal("on_anim_over", self, last_state)
 
 func set_playing(state: bool):
 	sprite.playing = state
@@ -62,6 +71,11 @@ func play_idle_anim(anim_duration := 0.0):
 	set_playing(true)
 	play_tween(data.idle_tween, data.idle_tween_time)
 	anim_timer = anim_duration
+	_play_idle_anim(anim_duration)
+
+# override for component type specific behavior
+func _play_idle_anim(anim_duration):
+	return
 
 func play_charge_anim(anim_duration := 0.0):
 	end_anim()
@@ -72,6 +86,11 @@ func play_charge_anim(anim_duration := 0.0):
 	set_playing(true)
 	play_tween(data.charge_tween, data.charge_tween_time)
 	anim_timer = anim_duration
+	_play_charge_anim(anim_duration)
+
+# override for component type specific behavior
+func _play_charge_anim(anim_duration):
+	return
 
 func play_attack_anim(anim_duration := 0.0):
 	end_anim()
@@ -82,6 +101,11 @@ func play_attack_anim(anim_duration := 0.0):
 	set_playing(true)
 	play_tween(data.attack_tween, data.attack_tween_time)
 	anim_timer = anim_duration
+	_play_attack_anim(anim_duration)
+
+# override for component type specific behavior
+func _play_attack_anim(anim_duration):
+	return
 
 func play_defend_anim(anim_duration := 0.0):
 	end_anim()
@@ -92,3 +116,8 @@ func play_defend_anim(anim_duration := 0.0):
 	set_playing(true)
 	play_tween(data.defend_tween, data.defend_tween_time)
 	anim_timer = anim_duration
+	_play_defend_anim(anim_duration)
+
+# override for component type specific behavior
+func _play_defend_anim(anim_duration):
+	return
