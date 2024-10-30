@@ -12,7 +12,6 @@ func _ready():
 	neck = $CircleChain
 	$CircleChain.set_gradient(Color(0x00d6d6ff), Color(0x744c1bff))
 	$CircleChain.set_attached_part($BossHead)
-	$CircleChain.source_dir = Vector2.UP
 	$BossBody.set_limb(0, $CircleChain)
 
 
