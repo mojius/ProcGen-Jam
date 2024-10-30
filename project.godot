@@ -14,10 +14,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AnimationTests/Bobbing.gd"
 }, {
-"base": "Node2D",
-"class": "Cave",
+"base": "BossComponent",
+"class": "BossBody",
 "language": "GDScript",
-"path": "res://prefabs/Cave.gd"
+"path": "res://BossVisuals/Bodies/BossBody.gd"
+}, {
+"base": "Node2D",
+"class": "BossComponent",
+"language": "GDScript",
+"path": "res://BossVisuals/BossComponent.gd"
+}, {
+"base": "BossComponent",
+"class": "BossHead",
+"language": "GDScript",
+"path": "res://BossVisuals/Heads/BossHead.gd"
+}, {
+"base": "Node2D",
+"class": "BossVisual",
+"language": "GDScript",
+"path": "res://BossVisuals/BossVisual.gd"
+}, {
+"base": "BossComponent",
+"class": "CircleChain",
+"language": "GDScript",
+"path": "res://BossVisuals/Connectors/CircleChain.gd"
 }, {
 "base": "Line2D",
 "class": "Hair",
@@ -25,39 +45,9 @@ _global_script_classes=[ {
 "path": "res://AnimationTests/Hair.gd"
 }, {
 "base": "Node2D",
-"class": "Player",
+"class": "LimbPoint",
 "language": "GDScript",
-"path": "res://prefabs/Player.gd"
-}, {
-"base": "Node2D",
-"class": "Projectile",
-"language": "GDScript",
-"path": "res://prefabs/ProjectilePlayer.gd"
-}, {
-"base": "Resource",
-"class": "ProjectileResource",
-"language": "GDScript",
-"path": "res://autoloads/projectile_resource.gd"
-}, {
-"base": "Reference",
-"class": "SfxrGenerator",
-"language": "GDScript",
-"path": "res://addons/godot_sfxr/SfxrGenerator.gd"
-}, {
-"base": "Object",
-"class": "SfxrGlobals",
-"language": "GDScript",
-"path": "res://addons/godot_sfxr/SfxrGlobals.gd"
-}, {
-"base": "Object",
-"class": "SfxrStreamPlayerInterface",
-"language": "GDScript",
-"path": "res://addons/godot_sfxr/SfxrStreamPlayerInterface.gd"
-}, {
-"base": "Position2D",
-"class": "Spawner",
-"language": "GDScript",
-"path": "res://prefabs/Spawner.gd"
+"path": "res://BossVisuals/Bodies/LimbPoint.gd"
 }, {
 "base": "Node2D",
 "class": "WitchVisual",
@@ -66,15 +56,13 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bobbing": "",
-"Cave": "",
+"BossBody": "",
+"BossComponent": "",
+"BossHead": "",
+"BossVisual": "",
+"CircleChain": "",
 "Hair": "",
-"Player": "",
-"Projectile": "",
-"ProjectileResource": "",
-"SfxrGenerator": "",
-"SfxrGlobals": "",
-"SfxrStreamPlayerInterface": "",
-"Spawner": "",
+"LimbPoint": "",
 "WitchVisual": ""
 }
 
@@ -83,51 +71,20 @@ _global_script_class_icons={
 config/name="ProcGen Jam"
 config/icon="res://icon.png"
 
-[autoload]
-
-GameManager="*res://autoloads/game_manager.gd"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/godot_sfxr/plugin.cfg" )
-
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
 
 [input]
 
-ui_left={
+anim_test1={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":73,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_right={
+anim_test2={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_up={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_down={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
-fire={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":75,"unicode":0,"echo":false,"script":null)
  ]
 }
 

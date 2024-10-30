@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://BossVisuals/Connectors/CircleChain.gd" type="Script" id=1]
+[ext_resource path="res://BossVisuals/Connectors/circle.png" type="Texture" id=2]
+
+[node name="CircleChain" type="Node2D"]
+script = ExtResource( 1 )
+max_dist = 18.0
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -20, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( -40, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( -60, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( -80, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( -100, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="Sprite7" type="Sprite" parent="."]
+position = Vector2( -120, 0 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+
+[node name="FollowTarget" type="Node2D" parent="."]
+
+[node name="AttachPoint" type="Node2D" parent="."]
