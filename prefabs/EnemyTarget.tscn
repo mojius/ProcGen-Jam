@@ -1,14 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://sprites/shapes/Pentagon 2.png" type="Texture" id=1]
+[ext_resource path="res://sprites/shapes/Square2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Damageable.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Enemy.gd" type="Script" id=3]
-[ext_resource path="res://prefabs/Spawner.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prefabs/slow_projectile.tres" type="Resource" id=5]
-[ext_resource path="res://prefabs/ProjectileEnemy.tscn" type="PackedScene" id=6]
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 24.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25, 25 )
 
 [sub_resource type="StyleBoxLine" id=2]
 color = Color( 0.380392, 1, 0.14902, 1 )
@@ -29,11 +26,9 @@ texture = ExtResource( 1 )
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
-max_health = 500.0
-health = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="ProgressBar" type="ProgressBar" parent="Damageable"]
 margin_left = -25.0
@@ -45,13 +40,3 @@ custom_styles/bg = SubResource( 3 )
 max_value = 10.0
 value = 5.0
 percent_visible = false
-
-[node name="Spawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( -64, 0 )
-spawn_entity = ExtResource( 6 )
-active_loop = false
-num_projectiles = 3
-spread_angle = 0.25
-spread_delay = 0.25
-projectile_resource = ExtResource( 5 )
-rotate_direction_angle = true

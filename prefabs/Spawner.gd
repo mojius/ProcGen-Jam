@@ -11,6 +11,7 @@ export var spread_angle := 0.0
 export var spread_delay := 0.0
 export (Resource) var projectile_resource = ProjectileResource.new()
 
+export var rotate_direction_angle = false
 
 var elapsed_cooldown := 0.0
 
@@ -51,6 +52,8 @@ func actual_spawn(intensity: float, coords=null):
 				entity.direction = Vector2(cos(angle), sin(angle))
 			else:
 				entity.direction = Vector2.RIGHT
+			if rotate_direction_angle:
+				entity.direction = entity.direction.rotated(PI)
 			if spread_delay > 0.0:
 				tween.tween_callback(GameManager.player_projectile_layer, "add_child", [entity]).set_delay(spread_delay * cooldown / num_projectiles)
 			else:

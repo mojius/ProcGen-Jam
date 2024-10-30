@@ -12,3 +12,7 @@ func _ready():
 
 func destroy():
 	call_deferred("queue_free")
+	
+func _process(delta):
+	if has_node("Spawner"):
+		$Spawner.try_spawn(position)
