@@ -14,15 +14,45 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://AnimationTests/Bobbing.gd"
 }, {
+"base": "BossComponent",
+"class": "BossBody",
+"language": "GDScript",
+"path": "res://BossVisuals/Bodies/BossBody.gd"
+}, {
+"base": "Node2D",
+"class": "BossComponent",
+"language": "GDScript",
+"path": "res://BossVisuals/BossComponent.gd"
+}, {
+"base": "BossComponent",
+"class": "BossHead",
+"language": "GDScript",
+"path": "res://BossVisuals/Heads/BossHead.gd"
+}, {
+"base": "Node2D",
+"class": "BossVisual",
+"language": "GDScript",
+"path": "res://BossVisuals/BossVisual.gd"
+}, {
 "base": "Node2D",
 "class": "Cave",
 "language": "GDScript",
 "path": "res://prefabs/Cave.gd"
 }, {
+"base": "BossComponent",
+"class": "CircleChain",
+"language": "GDScript",
+"path": "res://BossVisuals/Connectors/CircleChain.gd"
+}, {
 "base": "Line2D",
 "class": "Hair",
 "language": "GDScript",
 "path": "res://AnimationTests/Hair.gd"
+}, {
+"base": "Node2D",
+"class": "LimbPoint",
+"language": "GDScript",
+"path": "res://BossVisuals/Bodies/LimbPoint.gd"
 }, {
 "base": "Node2D",
 "class": "Player",
@@ -66,8 +96,14 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Bobbing": "",
+"BossBody": "",
+"BossComponent": "",
+"BossHead": "",
+"BossVisual": "",
 "Cave": "",
+"CircleChain": "",
 "Hair": "",
+"LimbPoint": "",
 "Player": "",
 "Projectile": "",
 "ProjectileResource": "",
@@ -128,6 +164,16 @@ ui_down={
 fire={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+anim_test1={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":74,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+anim_test2={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

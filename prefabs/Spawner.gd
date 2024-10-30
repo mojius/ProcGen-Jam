@@ -18,8 +18,8 @@ var elapsed_cooldown := 0.0
 var witch_node = null
 
 func _ready():
-	witch_node = $"../WitchVisual/Broom/Torso/WandArm"
-	if witch_node:
+	if has_node("../WitchVisual/Broom/Torso/WandArm"):
+		witch_node = $"../WitchVisual/Broom/Torso/WandArm"
 		witch_node.connect("tween_over", self, "actual_spawn")
 		
 func _process(delta):

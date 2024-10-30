@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://prefabs/slow_projectile.tres" type="Resource" id=1]
+[ext_resource path="res://prefabs/Spawner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefabs/ProjectileEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/shapes/Pentagon 2.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Damageable.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Enemy.gd" type="Script" id=6]
+[ext_resource path="res://BossVisuals/Heads/BossHead.tscn" type="PackedScene" id=7]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 24.0
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0.380392, 1, 0.14902, 1 )
+thickness = 10
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 1, 0.262745, 0.14902, 1 )
+thickness = 10
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="BossHead" parent="." instance=ExtResource( 7 )]
+position = Vector2( 24, 8 )
+
+[node name="Square2" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 4 )
+
+[node name="Damageable" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource( 5 )
+max_health = 500.0
+health = 500.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+shape = SubResource( 4 )
+
+[node name="ProgressBar" type="ProgressBar" parent="Damageable"]
+margin_left = -25.0
+margin_top = -40.0
+margin_right = 25.0
+margin_bottom = -26.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 10.0
+value = 5.0
+percent_visible = false
+
+[node name="Spawner" parent="." instance=ExtResource( 2 )]
+position = Vector2( -64, 0 )
+spawn_entity = ExtResource( 3 )
+active_loop = false
+num_projectiles = 3
+spread_angle = 0.25
+spread_delay = 0.25
+projectile_resource = ExtResource( 1 )
+rotate_direction_angle = true

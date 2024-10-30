@@ -22,6 +22,7 @@ func make_cave(start_heights):
 	var max_bottom := 0
 	var top = start_heights[0]
 	var bottom = start_heights[1]
+	center_line.append(Vector2(length_position, (top+bottom)/2.0))
 	while length_position < length:
 		length_position += rand_range(min_spacing, max_spacing)
 		length_position = clamp(length_position, 0, length)

@@ -36,15 +36,10 @@ func _ready():
 	spawn_some_enemies()
 	
 func spawn_some_enemies():
-	enemy_mover = Node2D.new()
-	#enemy_mover.position = player.get_node("Player").position
-	add_child(enemy_mover)
-	var enemy = preload("res://prefabs/EnemyTarget.tscn")
-	for x in 3:
-		for y in 10:
-			var e = enemy.instance()
-			e.position = Vector2(x * 50 + 300, (y - 5) * 50)
-			enemy_mover.add_child(e)
+	var enemy = preload("res://prefabs/EnemyBoss1.tscn").instance()
+	enemy.position.x = 450
+	add_child(enemy)
+	enemy_mover = enemy
 
 func _process(delta):
 	last_cave.position.x -= scroll_speed * delta
@@ -59,11 +54,17 @@ func _process(delta):
 	$PlayAreaMargins.position.y = player.get_node("Player").position.y
 	
 	if enemy_mover:
-		var cave_position = 1024*0.5 + next_cave.position.x * -1.0
-		var y = 0.0
+		var cave_position = 1024*0.5 - next_cave.position.x - 1024*0.125
+		var y0 = null
+		var y1 = null
+		
 		for i in next_cave.center_line:
-			y = i.y
+			y0 = y1
+			y1 = i
 			if i.x > cave_position:
 				break
-		enemy_mover.position.y = y
+		if y0:
+			enemy_mover.position.y = lerp(y0.y, y1.y, (cave_position-y0.x)/(y1.x-y0.x))
+		else:
+			enemy_mover.position.y = y1.y
 	
