@@ -1,30 +1,47 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scenes/Caves2.gd" type="Script" id=1]
-[ext_resource path="res://sprites/bg/grass.png" type="Texture" id=2]
-[ext_resource path="res://sprites/bg/stone.png" type="Texture" id=3]
 
 [node name="Caves2" type="Node2D"]
 script = ExtResource( 1 )
+scroll_speed = 100.0
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-position = Vector2( -87, -213 )
-texture = ExtResource( 3 )
-polygon = PoolVector2Array( -55, 133, 43, 213, 4, 286, -63, 325, -152, 273, -153, 194 )
+[node name="PlayAreaMargins" type="Node2D" parent="."]
 
-[node name="Line2D" type="Line2D" parent="Polygon2D"]
-points = PoolVector2Array( -55, 133, 43, 213, 4, 286, -63, 325, -152, 273, -153, 194 )
-width = 16.0
-default_color = Color( 1, 1, 1, 1 )
-texture = ExtResource( 2 )
-texture_mode = 1
-antialiased = true
+[node name="Offset" type="Node2D" parent="PlayAreaMargins"]
+position = Vector2( 0, -300 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="PlayAreaMargins/Offset"]
+margin_left = -1024.0
+margin_top = -1024.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+color = Color( 0.478431, 0.478431, 0.478431, 1 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D"]
-polygon = PoolVector2Array( -55, 133, 43, 213, 4, 286, -63, 325, -152, 273, -153, 194 )
+[node name="Left" type="Polygon2D" parent="PlayAreaMargins/Offset"]
+position = Vector2( -378, -24 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -1033, 1477, -961, -1060, -102, -642 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayAreaMargins/Offset/Left"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayAreaMargins/Offset/Left/StaticBody2D"]
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -289, 694, -281, -685, -102, -642 )
+
+[node name="Right" type="Polygon2D" parent="PlayAreaMargins/Offset"]
+position = Vector2( 421, 57 )
+rotation = 3.14159
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -1033, 1477, -961, -1060, -102, -642 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayAreaMargins/Offset/Right"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayAreaMargins/Offset/Right/StaticBody2D"]
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -289, 694, -281, -685, -102, -642 )
 
 [node name="Level" type="Node2D" parent="."]
 

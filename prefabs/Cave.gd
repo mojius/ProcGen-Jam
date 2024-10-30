@@ -2,13 +2,15 @@ extends Node2D
 class_name Cave
 
 
-export var length := 1000
-export var min_height := 200
-export var max_height := 300
+export var length := 2048  # needs to be larger than the window width
+export var min_height := 400
+export var max_height := 600
 export var min_spacing := 20
 export var max_spacing := 200
 export var max_change := 100
 export var polygon_margin := 300
+
+var center_line = []
 
 
 func make_cave(start_heights):
@@ -33,6 +35,7 @@ func make_cave(start_heights):
 		if bottom > max_bottom:
 			max_bottom = bottom
 		points_bottom.append(Vector2(length_position, bottom))
+		center_line.append(Vector2(length_position, (top+bottom)/2.0))
 			
 	var polygon_top = Polygon2D.new()
 	var polygon_bottom = Polygon2D.new()
@@ -52,6 +55,10 @@ func make_cave(start_heights):
 	line_bottom.texture_mode = Line2D.LINE_TEXTURE_TILE
 	add_child(line_top)
 	add_child(line_bottom)
+	
+	var line_center = Line2D.new()
+	add_child(line_center)
+	line_center.points = PoolVector2Array(center_line)
 	
 
 	line_top.points = PoolVector2Array(points_top)

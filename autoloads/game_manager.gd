@@ -14,7 +14,7 @@ var player: Player = null
 var elapsed := 0.0
 
 func _ready():
-	spawn_player()
+	pass
 	
 func _process(delta):
 	elapsed += delta
@@ -27,6 +27,7 @@ func spawn_player():
 		player_layer.add_child(player)
 		player.connect("hit", player, "spawn")
 	player.spawn()
+	return player
 	
 
 

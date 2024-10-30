@@ -9,6 +9,7 @@ export(float) var direct_damage := 1.0
 export(float) var indirect_damage := 0.5
 export(float) var explosion_size := 3.0
 export(float) var explosion_time := 0.3
+export(float) var lingering_damage := 0.5
 """
 projectile trajectory:
   straight
