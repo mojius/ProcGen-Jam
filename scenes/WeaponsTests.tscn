@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://prefabs/Spawner.tscn" type="PackedScene" id=1]
+[ext_resource path="res://sprites/bg/abstract-black-and-white-grid-pattern-free-vector.jpg" type="Texture" id=2]
+[ext_resource path="res://prefabs/fast_projectile.tres" type="Resource" id=3]
+[ext_resource path="res://prefabs/slow_projectile.tres" type="Resource" id=4]
+[ext_resource path="res://sprites/bg/grass.png" type="Texture" id=5]
+[ext_resource path="res://sprites/bg/stone.png" type="Texture" id=6]
+[ext_resource path="res://scenes/WeaponsTests.gd" type="Script" id=7]
+[ext_resource path="res://autoloads/projectile_resource.gd" type="Script" id=8]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 8 )
+size = 1.0
+life_time = 1.5
+travel_speed = 200.0
+rotation_speed = 300.0
+direct_damage = 1.0
+indirect_damage = 0.6
+explosion_size = 10.0
+explosion_time = 0.5
+lingering_damage = 0.5
+
+[node name="WeaponsTests" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="Abstract-black-and-white-grid-pattern-free-vector" type="Sprite" parent="."]
+modulate = Color( 0.278431, 0.619608, 0.627451, 1 )
+texture = ExtResource( 2 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( 656, -232 )
+texture = ExtResource( 6 )
+polygon = PoolVector2Array( 112, 816, -96, 704, -152, 192, -136, 80, -152, -88, 112, -176 )
+
+[node name="Line2D" type="Line2D" parent="Polygon2D"]
+points = PoolVector2Array( 112, 816, -96, 704, -152, 192, -136, 80, -152, -88, 112, -176 )
+width = 16.0
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 5 )
+texture_mode = 1
+antialiased = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Polygon2D"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Polygon2D/StaticBody2D"]
+polygon = PoolVector2Array( 112, 816, -96, 704, -152, 192, -136, 80, -152, -88, 112, -176 )
+
+[node name="Spawner1" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 64 )
+num_projectiles = 5
+spread_angle = 0.5
+
+[node name="Spawner2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 128 )
+num_projectiles = 5
+spread_angle = 0.05
+spread_delay = 0.4
+
+[node name="Spawner3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -128 )
+projectile_resource = ExtResource( 4 )
+
+[node name="Spawner4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -64 )
+projectile_resource = ExtResource( 3 )
+
+[node name="Spawner5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -192 )
+projectile_resource = SubResource( 1 )

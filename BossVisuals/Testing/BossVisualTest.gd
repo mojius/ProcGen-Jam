@@ -1,24 +1,23 @@
 extends Node2D
 
-export var slime: Resource = null
-export var eye: Resource = null
-export var hawk: Resource = null
+# boss part atlas
+export var atlas: Resource
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$BossVisual.build_boss({
 		"type": BossVisual.Components.body,
-		"resource": slime,
+		"resource": atlas.boss_bodies[0],
 		"limbs": [
 			{
 				"type": BossVisual.Components.neck,
 				"part":{
 					"type": BossVisual.Components.body,
-					"resource": slime,
+					"resource": atlas.boss_bodies[0],
 					"limbs": [
 						{
 							"type": BossVisual.Components.head,
-							"resource": hawk
+							"resource": atlas.boss_heads[0]
 						},
 					]
 				}
@@ -29,7 +28,7 @@ func _ready():
 					"type": BossVisual.Components.neck,
 					"part": {
 						"type": BossVisual.Components.part,
-						"resource": eye
+						"resource": atlas.boss_parts[0]
 					}
 				}
 			},
@@ -37,7 +36,7 @@ func _ready():
 				"type": BossVisual.Components.neck,
 				"part": {
 					"type": BossVisual.Components.part,
-					"resource": eye
+					"resource": atlas.boss_parts[0]
 				}
 			}
 		]

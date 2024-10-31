@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/Caves3.gd" type="Script" id=1]
+
+[node name="Caves3" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="PlayAreaMargins" type="Node2D" parent="."]
+
+[node name="Offset" type="Node2D" parent="PlayAreaMargins"]
+position = Vector2( 0, -300 )
+
+[node name="ColorRect" type="ColorRect" parent="PlayAreaMargins/Offset"]
+margin_left = -1024.0
+margin_top = -1024.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+color = Color( 0.478431, 0.478431, 0.478431, 1 )
+
+[node name="Left" type="Polygon2D" parent="PlayAreaMargins/Offset"]
+position = Vector2( -378, -24 )
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -1033, 1477, -961, -1060, -102, -642 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayAreaMargins/Offset/Left"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayAreaMargins/Offset/Left/StaticBody2D"]
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -289, 694, -281, -685, -102, -642 )
+
+[node name="Right" type="Polygon2D" parent="PlayAreaMargins/Offset"]
+position = Vector2( 421, 57 )
+rotation = 3.14159
+color = Color( 1, 0, 0, 1 )
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -1033, 1477, -961, -1060, -102, -642 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlayAreaMargins/Offset/Right"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayAreaMargins/Offset/Right/StaticBody2D"]
+polygon = PoolVector2Array( -48, -355, -65, 20, -32, 417, -73, 646, -289, 694, -281, -685, -102, -642 )
+
+[node name="Level" type="Node2D" parent="."]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="PlayerProjectiles" type="Node2D" parent="."]
+
+[node name="EnemyProjectiles" type="Node2D" parent="."]
