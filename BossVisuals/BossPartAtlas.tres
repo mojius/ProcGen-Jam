@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://BossVisuals/BossPartAtlas.gd" type="Script" id=1]
+[ext_resource path="res://BossVisuals/Parts/Eye/EyeBall.tres" type="Resource" id=2]
+[ext_resource path="res://BossVisuals/Parts/Heads/Hawk/Hawk.tres" type="Resource" id=3]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/Slime.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+boss_bodies = [ ExtResource( 4 ) ]
+boss_parts = [ ExtResource( 2 ) ]
+boss_heads = [ ExtResource( 3 ) ]
