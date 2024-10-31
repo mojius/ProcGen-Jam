@@ -7,9 +7,6 @@ onready var jaw: Sprite = $ShakeTarget/Sprite/Jaw
 func _set_data(new_data):
 	if new_data is BossHeadResource:
 		jaw.texture = new_data.jaw
-
-func _ready():
-	pass
 	
 func _end_anim():
 	jaw.rotation = 0
@@ -52,7 +49,7 @@ func play_biting(top_open_amount := 0.0, jaw_open_amount := 1.0, jaw_open_time :
 	tween2.tween_interval(close_pause_time)
 	tweens.append(tween2)
 
-func _play_charge_anim(duration: float):
+func _play_charge_anim(_duration: float):
 	var tween = create_tween()
 	tween.tween_callback(self, "play_biting", [0.2, 0.4, 0.08, 0.01, 0.05, 0.01, 0.5, 0.01])
 	tween.tween_interval(0.15)
@@ -78,7 +75,7 @@ func _play_attack_anim(duration: float):
 	tween2.tween_property(top, "rotation", 0, jaw_close_time)
 	tweens.append(tween2)
 
-func _play_defend_anim(duration: float):
+func _play_defend_anim(_duration: float):
 	var tween = create_tween()
 	tween.tween_callback(self, "play_biting", [0.0, 0.4, 0.5, 0.01, 0.5, 0.01, 0.0, 0.0])
 	tween.tween_interval(1.02)

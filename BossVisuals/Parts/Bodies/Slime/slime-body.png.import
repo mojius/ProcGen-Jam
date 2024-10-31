@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slime-body.png-207c0aac9f04423bf095ae4c37f04aa3.stex"
+path="res://.import/slime-body.png-6ad0eb30687b1b8a9cd3027bb4538c77.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BossVisuals/Bodies/slime-body.png"
-dest_files=[ "res://.import/slime-body.png-207c0aac9f04423bf095ae4c37f04aa3.stex" ]
+source_file="res://BossVisuals/Parts/Bodies/Slime/slime-body.png"
+dest_files=[ "res://.import/slime-body.png-6ad0eb30687b1b8a9cd3027bb4538c77.stex" ]
 
 [params]
 

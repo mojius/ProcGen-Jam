@@ -2,12 +2,15 @@ extends Node2D
 
 export var boss_part: Resource = null
 export var boss_head: Resource = null
+export var boss_body: Resource = null
 
 func _ready():
 	$AnimatedPart.set_data(boss_part)
 	$AnimatedPart.connect("on_anim_over", self, "on_anim_over")
 	$BossHead.set_data(boss_head)
 	$BossHead.connect("on_anim_over", self, "on_anim_over")
+	$BossBody.set_data(boss_body)
+	$BossBody.connect("on_anim_over", self, "on_anim_over")
 	
 
 func on_anim_over(part: BossComponent, state):
@@ -17,9 +20,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("anim_test1"):
 		$AnimatedPart.play_charge_anim(1.0)
 		$BossHead.play_charge_anim(1.0)
+		$BossBody.play_charge_anim(1.0)
 	elif Input.is_action_just_pressed("anim_test2"):
 		$AnimatedPart.play_attack_anim(1.0)
 		$BossHead.play_attack_anim(1.0)
+		$BossBody.play_attack_anim(1.0)
 	elif Input.is_action_just_pressed("anim_test3"):
 		$AnimatedPart.play_defend_anim(6.0)
 		$BossHead.play_defend_anim(6.0)
+		$BossBody.play_defend_anim(6.0)

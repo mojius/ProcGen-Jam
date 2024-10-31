@@ -4,6 +4,7 @@ class_name BossComponent
 var tweens := []
 var shake_target: Node2D = null
 var tween_target: Node2D = null
+var projectile_point: Node2D = null
 
 func end_anim():
 	for t in tweens:
@@ -73,7 +74,7 @@ func play_stomp(duration := 3.5, lift_amount := 5.0, drop_amount := 5.0, drop_sh
 	
 	return lift_time + lift_pause_time + drop_time + drop_pause_time
 
-func play_float(duration := 1, amplitude := 5.0):
+func play_float(duration := 1.0, amplitude := 5.0):
 	var tween = create_tween()
 	tween.tween_property(tween_target, "position", Vector2.UP * amplitude, duration * 0.5).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(tween_target, "position", Vector2.DOWN * amplitude, duration * 0.5).set_trans(Tween.TRANS_SINE)

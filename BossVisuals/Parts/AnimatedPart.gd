@@ -34,8 +34,14 @@ static func anim_state_to_str(var state):
 var cur_anim_state = AnimationState.idle
 
 func _ready():
+	ready()
+
+func ready():
 	shake_target = $ShakeTarget
 	tween_target = $ShakeTarget/Sprite
+	sprite = $ShakeTarget/Sprite
+	original_scale = $ShakeTarget/Sprite.scale.x
+	projectile_point = $ProjectilePoint
 
 var anim_timer := 0.0
 

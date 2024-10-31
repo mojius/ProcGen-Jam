@@ -18,6 +18,9 @@ var attached_part: BossComponent = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ready()
+
+func ready():
 	circles.append($Sprite)
 	circles.append($Sprite2)
 	circles.append($Sprite3)
@@ -29,11 +32,22 @@ func _ready():
 	attach_point = $AttachPoint
 
 # use to set the boss body part this chain connects to
-func set_attached_part(part):
+func set_attached_part(part: BossComponent):
 	attached_part = part
-	attached_part.get_parent().remove_child(attached_part)
+	if attached_part.get_parent():
+		attached_part.get_parent().remove_child(attached_part)
 	attach_point.add_child(attached_part)
 	attached_part.position = Vector2.ZERO
+	
+	if attached_part is BossBody:
+		$Sprite5.z_index = 2
+		$Sprite6.z_index = 2
+		$Sprite7.z_index = 2
+	elif "source_dir" in attached_part:
+		attached_part.get_child(0).z_index = 3
+		attached_part.get_child(1).z_index = 3
+		attached_part.get_child(2).z_index = 3
+		attached_part.get_child(3).z_index = 3
 	
 func set_gradient(color1: Color, color2: Color):
 	for i in range(circles.size()):
@@ -41,7 +55,7 @@ func set_gradient(color1: Color, color2: Color):
 		circle.modulate = color1.linear_interpolate(color2, float(i) / (circles.size() - 1))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if follow_target:
 		var diff = follow_target.position
 		var dir = diff.normalized()
@@ -58,9 +72,10 @@ func _process(delta):
 			var circle = circles[i] as Sprite
 			var progress = float(i) / (circles.size() - 1)
 			var next_dir = Vector2.RIGHT.rotated(lerp_angle(start_angle, end_angle, progress))
-			var next_dist = min(max_dist, diff.length() / i)
 			circle.position = circles[i - 1].position + (next_dir * min(max_dist, circle_dist))
 			start_angle = next_dir.angle()
 			end_angle = (follow_target.position - circle.position).angle()
 		
 		attach_point.position = circles[circles.size() - 1].position
+		if attached_part and "source_dir" in attached_part:
+			attached_part.source_dir = Vector2.RIGHT.rotated(end_angle)
