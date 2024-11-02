@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://BossVisuals/Parts/Bodies/BossBodyResource.gd" type="Script" id=1]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/slime-idle.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/slime-defend.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/slime-attack.tres" type="SpriteFrames" id=4]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/slime-charge.tres" type="SpriteFrames" id=5]
+
+[resource]
+script = ExtResource( 1 )
+color = Color( 0, 0.839216, 0.839216, 1 )
+idle_anim = ExtResource( 2 )
+idle_tween = "jiggle"
+idle_tween_time = 3.5
+charge_anim = ExtResource( 5 )
+charge_tween = "jiggle"
+charge_tween_time = 1.0
+attack_anim = ExtResource( 4 )
+attack_tween = "shake"
+attack_tween_time = 5.0
+defend_anim = ExtResource( 3 )
+defend_tween = "stomp"
+defend_tween_time = 3.0
+body_type = 0

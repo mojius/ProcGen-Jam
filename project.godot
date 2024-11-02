@@ -9,25 +9,50 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "BossComponent",
+"class": "AnimatedPart",
+"language": "GDScript",
+"path": "res://BossVisuals/Parts/AnimatedPart.gd"
+}, {
 "base": "Node2D",
 "class": "Bobbing",
 "language": "GDScript",
 "path": "res://AnimationTests/Bobbing.gd"
 }, {
-"base": "BossComponent",
+"base": "AnimatedPart",
 "class": "BossBody",
 "language": "GDScript",
-"path": "res://BossVisuals/Bodies/BossBody.gd"
+"path": "res://BossVisuals/Parts/Bodies/BossBody.gd"
+}, {
+"base": "BossPartResource",
+"class": "BossBodyResource",
+"language": "GDScript",
+"path": "res://BossVisuals/Parts/Bodies/BossBodyResource.gd"
 }, {
 "base": "Node2D",
 "class": "BossComponent",
 "language": "GDScript",
 "path": "res://BossVisuals/BossComponent.gd"
 }, {
-"base": "BossComponent",
+"base": "AnimatedPart",
 "class": "BossHead",
 "language": "GDScript",
-"path": "res://BossVisuals/Heads/BossHead.gd"
+"path": "res://BossVisuals/Parts/Heads/BossHead.gd"
+}, {
+"base": "BossPartResource",
+"class": "BossHeadResource",
+"language": "GDScript",
+"path": "res://BossVisuals/Parts/Heads/BossHeadResource.gd"
+}, {
+"base": "Resource",
+"class": "BossPartAtlas",
+"language": "GDScript",
+"path": "res://BossVisuals/BossPartAtlas.gd"
+}, {
+"base": "Resource",
+"class": "BossPartResource",
+"language": "GDScript",
+"path": "res://BossVisuals/Parts/BossPartResource.gd"
 }, {
 "base": "Node2D",
 "class": "BossVisual",
@@ -50,9 +75,14 @@ _global_script_classes=[ {
 "path": "res://AnimationTests/Hair.gd"
 }, {
 "base": "Node2D",
+"class": "HomingController",
+"language": "GDScript",
+"path": "res://prefabs/HomingController.gd"
+}, {
+"base": "Node2D",
 "class": "LimbPoint",
 "language": "GDScript",
-"path": "res://BossVisuals/Bodies/LimbPoint.gd"
+"path": "res://BossVisuals/Parts/Bodies/LimbPoint.gd"
 }, {
 "base": "Node2D",
 "class": "Player",
@@ -95,14 +125,20 @@ _global_script_classes=[ {
 "path": "res://AnimationTests/WitchVisual.gd"
 } ]
 _global_script_class_icons={
+"AnimatedPart": "",
 "Bobbing": "",
 "BossBody": "",
+"BossBodyResource": "",
 "BossComponent": "",
 "BossHead": "",
+"BossHeadResource": "",
+"BossPartAtlas": "",
+"BossPartResource": "",
 "BossVisual": "",
 "Cave": "",
 "CircleChain": "",
 "Hair": "",
+"HomingController": "",
 "LimbPoint": "",
 "Player": "",
 "Projectile": "",
@@ -176,6 +212,11 @@ anim_test2={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":75,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+anim_test3={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -184,6 +225,7 @@ anim_test2={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="player_projectiles"
 2d_physics/layer_5="enemy_projectiles"
+2d_physics/layer_6="powerups"
 
 [physics]
 

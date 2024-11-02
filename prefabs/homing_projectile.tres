@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://autoloads/projectile_resource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+size = 2.0
+life_time = 10.0
+travel_speed = 200.0
+rotation_speed = 0.5
+direct_damage = 1.0
+indirect_damage = 0.5
+explosion_size = 3.0
+explosion_time = 0.3
+lingering_damage = 0.5
