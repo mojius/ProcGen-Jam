@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://BossVisuals/Parts/BossPartResource.gd" type="Script" id=1]
+[ext_resource path="res://BossVisuals/Parts/Claw/claw-idle.tres" type="SpriteFrames" id=2]
+
+[resource]
+script = ExtResource( 1 )
+color = Color( 0.839216, 0.74902, 0, 1 )
+idle_anim = ExtResource( 2 )
+idle_tween = "stomp"
+idle_tween_time = 1.5
+charge_anim = ExtResource( 2 )
+charge_tween = "float"
+charge_tween_time = 0.3
+attack_anim = ExtResource( 2 )
+attack_tween = "shake"
+attack_tween_time = 10.0
+defend_anim = ExtResource( 2 )
+defend_tween = "float"
+defend_tween_time = 2.0

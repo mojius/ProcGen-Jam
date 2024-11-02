@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://BossVisuals/Connectors/CircleChain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://BossVisuals/Parts/Heads/BossHead.tscn" type="PackedScene" id=2]
 [ext_resource path="res://BossVisuals/Parts/Bodies/BossBody.tscn" type="PackedScene" id=3]
 [ext_resource path="res://BossVisuals/Parts/AnimatedPart.tscn" type="PackedScene" id=4]
 [ext_resource path="res://BossVisuals/BossVisual.gd" type="Script" id=5]
+[ext_resource path="res://BossVisuals/Parts/Bodies/BossBodyStar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://BossVisuals/Parts/Bodies/BossBodyVines.tscn" type="PackedScene" id=7]
 
 [node name="BossVisual" type="Node2D"]
 script = ExtResource( 5 )
-body_template = ExtResource( 3 )
+body_diamond_template = ExtResource( 3 )
+body_star_template = ExtResource( 6 )
+body_vines_template = ExtResource( 7 )
 neck_template = ExtResource( 1 )
 part_template = ExtResource( 4 )
 head_template = ExtResource( 2 )
