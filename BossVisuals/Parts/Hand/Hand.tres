@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://BossVisuals/Parts/BossPartResource.gd" type="Script" id=1]
+[ext_resource path="res://BossVisuals/Parts/Hand/hand-attack.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://BossVisuals/Parts/Hand/hand-idle.tres" type="SpriteFrames" id=3]
+
+[resource]
+script = ExtResource( 1 )
+color = Color( 1, 1, 1, 0 )
+idle_anim = ExtResource( 3 )
+idle_tween = "float"
+idle_tween_time = 1.5
+charge_anim = ExtResource( 2 )
+charge_tween = "float"
+charge_tween_time = 1.5
+attack_anim = ExtResource( 2 )
+attack_tween = "shake"
+attack_tween_time = 10.0
+defend_anim = ExtResource( 3 )
+defend_tween = "shake"
+defend_tween_time = 10.0

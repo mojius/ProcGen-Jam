@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://BossVisuals/Parts/Bodies/BossBody.gd" type="Script" id=1]
-[ext_resource path="res://BossVisuals/Parts/Bodies/Slime/slime-idle.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://BossVisuals/Parts/Bodies/Starfish/starfish-idle.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://BossVisuals/Parts/Bodies/LimbPoint.gd" type="Script" id=3]
 
 [node name="BossBody" type="Node2D"]
@@ -13,25 +13,30 @@ script = ExtResource( 1 )
 scale = Vector2( 3, 3 )
 z_index = 2
 frames = ExtResource( 2 )
-frame = 1
 
-[node name="FrontLimb" type="Node2D" parent="ShakeTarget/Sprite"]
-position = Vector2( -28, 0 )
+[node name="LeftTopLimb" type="Node2D" parent="ShakeTarget/Sprite"]
+position = Vector2( -23, -17.3333 )
 script = ExtResource( 3 )
+source_dir = Vector2( -1, -1 )
+
+[node name="LeftBottomLimb" type="Node2D" parent="ShakeTarget/Sprite"]
+position = Vector2( -22, 27 )
+script = ExtResource( 3 )
+source_dir = Vector2( -1, 1 )
 
 [node name="TopLimb" type="Node2D" parent="ShakeTarget/Sprite"]
 position = Vector2( 0, -28 )
 script = ExtResource( 3 )
 source_dir = Vector2( 0, -1 )
 
-[node name="BottomLimb" type="Node2D" parent="ShakeTarget/Sprite"]
-position = Vector2( 0, 28 )
+[node name="RightBottomLimb" type="Node2D" parent="ShakeTarget/Sprite"]
+position = Vector2( 21.3333, 27 )
 script = ExtResource( 3 )
-source_dir = Vector2( 0, 1 )
+source_dir = Vector2( 1, 1 )
 
-[node name="BackLimb" type="Node2D" parent="ShakeTarget/Sprite"]
-position = Vector2( 28, 0 )
+[node name="RightTopLimb" type="Node2D" parent="ShakeTarget/Sprite"]
+position = Vector2( 24.6667, -17 )
 script = ExtResource( 3 )
-source_dir = Vector2( 1, 0 )
+source_dir = Vector2( 1, -1 )
 
 [node name="ProjectilePoint" type="Node2D" parent="."]
