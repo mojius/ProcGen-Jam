@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Menus/UI/Font/FontThemeSmall.tres" type="Theme" id=1]
 [ext_resource path="res://Menus/UI/Font/FontThemeBig.tres" type="Theme" id=2]
@@ -7,11 +7,56 @@
 [ext_resource path="res://Menus/UI/Sprites/slot.png" type="Texture" id=5]
 [ext_resource path="res://Menus/UI/Sprites/slot-hover.png" type="Texture" id=6]
 [ext_resource path="res://Menus/UI/Sprites/slot-click.png" type="Texture" id=7]
+[ext_resource path="res://sprites/bg/Desert Background Underground Layer 4.png" type="Texture" id=8]
+[ext_resource path="res://sprites/bg/Desert Background Underground Layer 2.png" type="Texture" id=9]
+[ext_resource path="res://sprites/bg/Desert Background Underground Layer 1.png" type="Texture" id=10]
+[ext_resource path="res://sprites/bg/Desert Background Underground Layer 5.png" type="Texture" id=11]
+[ext_resource path="res://sprites/bg/Desert Background Underground Layer 3.png" type="Texture" id=12]
 
 [node name="FirstSpell" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = ExtResource( 11 )
+stretch_mode = 1
+
+[node name="Background2" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = ExtResource( 8 )
+stretch_mode = 1
+
+[node name="Background3" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = ExtResource( 12 )
+stretch_mode = 1
+
+[node name="Background4" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = ExtResource( 9 )
+stretch_mode = 1
+
+[node name="Background5" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 2.0
+margin_bottom = -2.0
+texture = ExtResource( 10 )
+stretch_mode = 1
 
 [node name="Option1" type="TextureButton" parent="."]
 anchor_left = 0.5
