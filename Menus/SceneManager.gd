@@ -25,17 +25,17 @@ func _ready():
 
 var transition_tween: SceneTreeTween
 func play_transition(func_to_call: String):
-	$Node2D/Transition.visible = true
-	$Node2D/Transition.modulate = Color(1, 1, 1, 0)
+	$CanvasLayer/Transition.visible = true
+	$CanvasLayer/Transition.modulate = Color(1, 1, 1, 0)
 	transition_tween = create_tween()
-	transition_tween.tween_property($Node2D/Transition, "modulate", Color.white, 0.4)
+	transition_tween.tween_property($CanvasLayer/Transition, "modulate", Color.white, 0.4)
 	transition_tween.tween_callback(self, func_to_call)
 	transition_tween.tween_interval(0.4)
-	transition_tween.tween_property($Node2D/Transition, "modulate", Color(1, 1, 1, 0), 0.4)
+	transition_tween.tween_property($CanvasLayer/Transition, "modulate", Color(1, 1, 1, 0), 0.4)
 	transition_tween.tween_callback(self, "end_transition")
 
 func end_transition():
-	$Node2D/Transition.visible = false
+	$CanvasLayer/Transition.visible = false
 	transition_tween.kill()
 
 func start_game():
@@ -58,7 +58,7 @@ func on_pick_first_spell(i: int):
 func pick_path():
 	scene_instance.queue_free()
 	scene_instance = selection_menu.instance() as SelectionMenu
-	add_child(scene_instance)
+	$CanvasLayer.add_child(scene_instance)
 	scene_instance.set_title("WHICH PATH WILL YOU CHOOSE")
 	
 	# TODO: add actual seeds
@@ -88,7 +88,7 @@ func on_level_end():
 func open_spell_menu():
 	scene_instance.queue_free()
 	scene_instance = spell_menu.instance() as SpellMenu
-	add_child(scene_instance)
+	$CanvasLayer.add_child(scene_instance)
 	
 	# TODO: add actual spells
 	scene_instance.set_new_spell(Node2D.new(), "Spell info...")

@@ -9,6 +9,7 @@ var next_cave = null
 var prev_cave = []
 var player = null
 var enemy_mover = null
+var powerups = []
 
 func _ready():
 	var max_height = 500	
@@ -34,16 +35,51 @@ func _ready():
 	GameManager.enemy_projectile_layer = $EnemyProjectiles
 	
 	spawn_some_enemies()
+	spawn_some_powerups()
 	
 func spawn_some_enemies():
-	var enemy = preload("res://prefabs/EnemyBoss1.tscn").instance()
-	enemy.position.x = 450
+	spawn_new_boss()
+	
+	
+func spawn_new_boss():
+	if enemy_mover:
+		enemy_mover.queue_free()
+	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
+	enemy.position.x = 550
 	add_child(enemy)
+	enemy.connect("destroyed", self, "end_level")
 	enemy_mover = enemy
+	
+signal on_level_end
+func end_level():
+	# spawn_new_boss()
+	GameManager.player.playable = false
+	yield(get_tree().create_timer(2), "timeout")
+	GameManager.player.queue_free()
+	GameManager.player = null
+	player = null
+	emit_signal("on_level_end")
+
+func spawn_some_powerups():
+	var powerup_ = preload("res://prefabs/Powerup.tscn")
+	var num_powerups = 7
+	for i in num_powerups:
+		var powerup = powerup_.instance()
+		powerup.position.x = 128 + 512.0/num_powerups * i
+		powerup.position.y = get_cave_center_y(1024-powerup.position.x)
+		powerup.set_powerup(i)
+		add_child(powerup)
+		powerups.append(powerup)
+
 
 func _process(delta):
+	if not player:
+		return
+	$ParallaxBackground.scroll_base_offset += delta*Vector2.LEFT * 100
 	last_cave.position.x -= scroll_speed * delta
 	next_cave.position.x -= scroll_speed * delta
+	for i in powerups:
+		i.position.x -= scroll_speed * delta
 	if next_cave.position.x < cave_length * -0.5:
 		last_cave.queue_free()
 		last_cave = next_cave
@@ -52,9 +88,19 @@ func _process(delta):
 		GameManager.level_layer.add_child(next_cave)
 		prev_cave = next_cave.make_cave(prev_cave)
 	$PlayAreaMargins.position.y = player.get_node("Player").position.y
+	$ParallaxBackground/TextureRect.rect_position.y = player.get_node("Player").position.y - 300
+	$ParallaxBackground/ParallaxLayer1/TextureRect.rect_position.y = player.get_node("Player").position.y - 300
+	$ParallaxBackground/ParallaxLayer2/TextureRect.rect_position.y = player.get_node("Player").position.y - 300
+	$ParallaxBackground/ParallaxLayer3/TextureRect.rect_position.y = player.get_node("Player").position.y - 300
+	$ParallaxBackground/ParallaxLayer4/TextureRect.rect_position.y = player.get_node("Player").position.y - 300
 	
 	if enemy_mover:
-		var cave_position = 1024*0.5 - next_cave.position.x - 1024*0.125
+		enemy_mover.position.y = get_cave_center_y(1024*0.125)
+		
+		
+			
+func get_cave_center_y(offset):
+		var cave_position = 1024*0.5 - next_cave.position.x - offset
 		var y0 = null
 		var y1 = null
 		
@@ -64,7 +110,8 @@ func _process(delta):
 			if i.x > cave_position:
 				break
 		if y0:
-			enemy_mover.position.y = lerp(y0.y, y1.y, (cave_position-y0.x)/(y1.x-y0.x))
+			return lerp(y0.y, y1.y, (cave_position-y0.x)/(y1.x-y0.x))
 		else:
-			enemy_mover.position.y = y1.y
+			return y1.y
+	
 	

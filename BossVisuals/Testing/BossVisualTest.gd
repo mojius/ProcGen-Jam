@@ -3,8 +3,6 @@ extends Node2D
 # boss part atlas
 export var atlas: Resource
 
-signal on_level_end
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -49,13 +47,7 @@ func _ready():
 			})
 	
 	$BossVisual.build_boss(dict)
-	
-	var tween = create_tween()
-	tween.tween_interval(4)
-	tween.tween_callback(self, "end_level")
 
-func end_level():
-	emit_signal("on_level_end")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

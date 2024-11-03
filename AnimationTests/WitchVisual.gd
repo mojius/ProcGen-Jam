@@ -11,3 +11,20 @@ func cast_spell_anim(intensity: float):
 func emit_wand_particles(intensity):
 	$WandParticles.lifetime = intensity
 	$WandParticles.emitting = true
+
+func spawn():
+	$Broom/Torso.show()
+	$Broom/BackLeg.show()
+	$Broom/FrontLeg.show()
+	$Broom/AnimatedSprite.hide()
+	$Broom/AnimatedSprite.playing = false
+
+	
+func die():
+	$Broom/Torso.hide()
+	$Broom/BackLeg.hide()
+	$Broom/FrontLeg.hide()
+	$Broom/AnimatedSprite.frame = 0
+	$Broom/AnimatedSprite.show()
+	$Broom/AnimatedSprite.play("default")
+	
