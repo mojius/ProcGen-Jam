@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Menus/UI/Font/FontThemeSmall.tres" type="Theme" id=1]
 [ext_resource path="res://Menus/UI/Font/FontThemeBig.tres" type="Theme" id=2]
 [ext_resource path="res://Menus/SelectionMenu/SelectionMenu.gd" type="Script" id=3]
 [ext_resource path="res://Menus/MainMenu/Sprites/main-menu-back.png" type="Texture" id=4]
 [ext_resource path="res://Menus/UI/Sprites/slot.png" type="Texture" id=5]
+[ext_resource path="res://Menus/UI/Sprites/slot-hover.png" type="Texture" id=6]
+[ext_resource path="res://Menus/UI/Sprites/slot-click.png" type="Texture" id=7]
 
 [node name="FirstSpell" type="Control"]
 anchor_right = 1.0
@@ -21,6 +23,8 @@ margin_top = -86.0
 margin_right = -167.0
 margin_bottom = 61.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="Option1"]
@@ -57,6 +61,8 @@ margin_top = 29.0
 margin_right = 74.0
 margin_bottom = 176.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="Option2"]
@@ -93,6 +99,8 @@ margin_top = -81.0
 margin_right = 323.0
 margin_bottom = 66.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="TextureRect" type="TextureRect" parent="Option3"]
