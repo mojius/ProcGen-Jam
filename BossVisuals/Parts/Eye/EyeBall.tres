@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://BossVisuals/Parts/BossPartResource.gd" type="Script" id=1]
 [ext_resource path="res://BossVisuals/Parts/Eye/eye-idle.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://BossVisuals/Parts/Eye/eye-charge.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://BossVisuals/Parts/Eye/eye-attack.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://BossVisuals/Parts/Eye/eye-defend.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://prefabs/homing_projectile.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -21,3 +22,4 @@ attack_tween_time = 5.0
 defend_anim = ExtResource( 5 )
 defend_tween = "stomp"
 defend_tween_time = 3.0
+projectile = ExtResource( 6 )

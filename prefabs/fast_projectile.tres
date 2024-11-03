@@ -13,3 +13,4 @@ indirect_damage = 0.5
 explosion_size = 3.0
 explosion_time = 0.3
 lingering_damage = 0.5
+homing = false

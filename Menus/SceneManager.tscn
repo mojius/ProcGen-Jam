@@ -5,7 +5,7 @@
 [ext_resource path="res://Menus/MainMenu/MainMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Menus/SelectionMenu/SelectionMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Menus/SpellMenu/SpellMenu.tscn" type="PackedScene" id=5]
-[ext_resource path="res://BossVisuals/Testing/BossVisualTest.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Caves3.tscn" type="PackedScene" id=6]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
@@ -17,7 +17,9 @@ spell_menu = ExtResource( 5 )
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 500
 
-[node name="Transition" type="TextureRect" parent="Node2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Transition" type="TextureRect" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,5 +27,6 @@ margin_left = -167.0
 margin_top = -160.0
 margin_right = 1195.0
 margin_bottom = 805.0
+mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true

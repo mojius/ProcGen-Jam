@@ -7,7 +7,7 @@ export var min_height := 400
 export var max_height := 600
 export var min_spacing := 20
 export var max_spacing := 200
-export var max_change := 100
+export var max_change := 50
 export var polygon_margin := 300
 
 var center_line = []
@@ -59,6 +59,7 @@ func make_cave(start_heights):
 	
 	var line_center = Line2D.new()
 	add_child(line_center)
+	line_center.hide()
 	line_center.points = PoolVector2Array(center_line)
 	
 
