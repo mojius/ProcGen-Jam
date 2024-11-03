@@ -80,6 +80,11 @@ _global_script_classes=[ {
 "path": "res://BossVisuals/Parts/Bodies/LimbPoint.gd"
 }, {
 "base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://Menus/MainMenu/MainMenu.gd"
+}, {
+"base": "Control",
 "class": "MenuBobbing",
 "language": "GDScript",
 "path": "res://Menus/MainMenu/Scripts/MenuBobbing.gd"
@@ -104,6 +109,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoloads/projectile_resource.gd"
 }, {
+"base": "Node",
+"class": "SceneManager",
+"language": "GDScript",
+"path": "res://Menus/SceneManager.gd"
+}, {
+"base": "Control",
+"class": "SelectionMenu",
+"language": "GDScript",
+"path": "res://Menus/SelectionMenu/SelectionMenu.gd"
+}, {
 "base": "Reference",
 "class": "SfxrGenerator",
 "language": "GDScript",
@@ -123,6 +138,11 @@ _global_script_classes=[ {
 "class": "Spawner",
 "language": "GDScript",
 "path": "res://prefabs/Spawner.gd"
+}, {
+"base": "Control",
+"class": "SpellMenu",
+"language": "GDScript",
+"path": "res://Menus/SpellMenu/SpellMenu.gd"
 }, {
 "base": "Node2D",
 "class": "WitchVisual",
@@ -144,21 +164,26 @@ _global_script_class_icons={
 "CircleChain": "",
 "Hair": "",
 "LimbPoint": "",
+"MainMenu": "",
 "MenuBobbing": "",
 "MenuEyes": "",
 "Player": "",
 "Projectile": "",
 "ProjectileResource": "",
+"SceneManager": "",
+"SelectionMenu": "",
 "SfxrGenerator": "",
 "SfxrGlobals": "",
 "SfxrStreamPlayerInterface": "",
 "Spawner": "",
+"SpellMenu": "",
 "WitchVisual": ""
 }
 
 [application]
 
 config/name="ProcGen Jam"
+run/main_scene="res://Menus/SceneManager.tscn"
 config/icon="res://icon.png"
 
 [autoload]
