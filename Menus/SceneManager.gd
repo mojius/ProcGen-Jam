@@ -25,17 +25,17 @@ func _ready():
 
 var transition_tween: SceneTreeTween
 func play_transition(func_to_call: String):
-	$CanvasLayer/Transition.visible = true
-	$CanvasLayer/Transition.modulate = Color(1, 1, 1, 0)
+	$CanvasLayer/Node2D/Transition.visible = true
+	$CanvasLayer/Node2D/Transition.modulate = Color(1, 1, 1, 0)
 	transition_tween = create_tween()
-	transition_tween.tween_property($CanvasLayer/Transition, "modulate", Color.white, 0.4)
+	transition_tween.tween_property($CanvasLayer/Node2D/Transition, "modulate", Color.white, 0.4)
 	transition_tween.tween_callback(self, func_to_call)
 	transition_tween.tween_interval(0.4)
-	transition_tween.tween_property($CanvasLayer/Transition, "modulate", Color(1, 1, 1, 0), 0.4)
+	transition_tween.tween_property($CanvasLayer/Node2D/Transition, "modulate", Color(1, 1, 1, 0), 0.4)
 	transition_tween.tween_callback(self, "end_transition")
 
 func end_transition():
-	$CanvasLayer/Transition.visible = false
+	$CanvasLayer/Node2D/Transition.visible = false
 	transition_tween.kill()
 
 func start_game():

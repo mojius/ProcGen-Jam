@@ -14,12 +14,12 @@ selection_menu = ExtResource( 4 )
 gameplay = ExtResource( 6 )
 spell_menu = ExtResource( 5 )
 
-[node name="Node2D" type="Node2D" parent="."]
-z_index = 500
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Transition" type="TextureRect" parent="CanvasLayer"]
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+z_index = 500
+
+[node name="Transition" type="TextureRect" parent="CanvasLayer/Node2D"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
