@@ -18,7 +18,8 @@ func _physics_process(delta):
 	var direction: Vector2
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	body.move_and_slide(direction * SPEED)
-	
+
+
 func spawn():
 	playable = true
 	#$Player.invulnerable = true		
@@ -60,10 +61,11 @@ func destroy_reset():
 	
 
 func _process(delta):
+	if not playable:
+		return
 	var velocity := Vector2.ZERO
-	if playable:
-		if Input.is_action_pressed("fire"):
-			spawner.try_spawn(body.position)
+	if Input.is_action_pressed("fire"):
+		spawner.try_spawn(body.position)
 	move_powerups(delta)
 			
 func move_powerups(delta):

@@ -47,8 +47,18 @@ func spawn_new_boss():
 	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
 	enemy.position.x = 550
 	add_child(enemy)
-	enemy.connect("destroyed", self, "spawn_new_boss")
+	enemy.connect("destroyed", self, "end_level")
 	enemy_mover = enemy
+	
+signal on_level_end
+func end_level():
+	# spawn_new_boss()
+	GameManager.player.playable = false
+	yield(get_tree().create_timer(2), "timeout")
+	GameManager.player.queue_free()
+	GameManager.player = null
+	player = null
+	emit_signal("on_level_end")
 
 func spawn_some_powerups():
 	var powerup_ = preload("res://prefabs/Powerup.tscn")
@@ -63,6 +73,8 @@ func spawn_some_powerups():
 
 
 func _process(delta):
+	if not player:
+		return
 	$ParallaxBackground.scroll_base_offset += delta*Vector2.LEFT * 100
 	last_cave.position.x -= scroll_speed * delta
 	next_cave.position.x -= scroll_speed * delta

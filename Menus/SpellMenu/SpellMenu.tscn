@@ -1,0 +1,209 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Menus/UI/Sprites/gem-button.png" type="Texture" id=1]
+[ext_resource path="res://Menus/UI/Font/FontThemeSmall.tres" type="Theme" id=2]
+[ext_resource path="res://Menus/MainMenu/Sprites/main-menu-back.png" type="Texture" id=3]
+[ext_resource path="res://Menus/UI/Sprites/slot.png" type="Texture" id=4]
+[ext_resource path="res://Menus/SpellMenu/SpellMenu.gd" type="Script" id=5]
+[ext_resource path="res://Menus/UI/Sprites/slot-hover.png" type="Texture" id=6]
+[ext_resource path="res://Menus/UI/Sprites/slot-click.png" type="Texture" id=7]
+
+[node name="SpellMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="Option1" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -314.0
+margin_top = -86.0
+margin_right = -167.0
+margin_bottom = 61.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="Option1"]
+self_modulate = Color( 1, 1, 1, 0.466667 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -89.5
+margin_top = 3.0
+margin_right = 90.5
+margin_bottom = 113.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Option1/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+theme = ExtResource( 2 )
+text = "hgh hgjhhh"
+autowrap = true
+
+[node name="Option2" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -73.0
+margin_top = 29.0
+margin_right = 74.0
+margin_bottom = 176.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="Option2"]
+self_modulate = Color( 1, 1, 1, 0.466667 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -89.5
+margin_top = 3.0
+margin_right = 90.5
+margin_bottom = 113.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Option2/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+theme = ExtResource( 2 )
+text = "hgh hgjhhh"
+autowrap = true
+
+[node name="Option3" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 176.0
+margin_top = -81.0
+margin_right = 323.0
+margin_bottom = 66.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 6 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="Option3"]
+self_modulate = Color( 1, 1, 1, 0.466667 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -89.5
+margin_top = 3.0
+margin_right = 90.5
+margin_bottom = 113.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Option3/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+theme = ExtResource( 2 )
+text = "hgh hgjhhh"
+autowrap = true
+
+[node name="Option4" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -68.0
+margin_top = -282.0
+margin_right = 79.0
+margin_bottom = -135.0
+texture_normal = ExtResource( 4 )
+expand = true
+
+[node name="TextureRect" type="TextureRect" parent="Option4"]
+self_modulate = Color( 1, 1, 1, 0.466667 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 76.5
+margin_top = -138.0
+margin_right = 256.5
+margin_bottom = -28.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="Label" type="Label" parent="Option4/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = -3.0
+margin_bottom = -3.0
+theme = ExtResource( 2 )
+text = "hgh hgjhhh"
+autowrap = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 776.0
+margin_top = 513.0
+margin_right = 960.0
+margin_bottom = 581.0
+texture_normal = ExtResource( 1 )
+expand = true
+
+[node name="Label" type="Label" parent="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 29.0
+margin_top = 4.0
+margin_right = -30.0
+margin_bottom = -3.0
+theme = ExtResource( 2 )
+text = "CONTINUE"
+align = 1
+valign = 1
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 269, 134 )
+points = PoolVector2Array( 159, 36, 87, 85, 91, 62, 87, 84, 110, 90 )
+width = 6.0
+default_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( 643, 329 )
+rotation = -2.0436
+points = PoolVector2Array( 159, 36, 87, 85, 91, 62, 87, 84, 110, 90 )
+width = 6.0
+default_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2( 391, 344 )
+rotation = -0.951673
+points = PoolVector2Array( 159, 36, 87, 85, 91, 62, 87, 84, 110, 90 )
+width = 6.0
+default_color = Color( 0.784314, 0.784314, 0.784314, 1 )
+
+[connection signal="pressed" from="Option1" to="." method="_on_Option1_pressed"]
+[connection signal="pressed" from="Option2" to="." method="_on_Option2_pressed"]
+[connection signal="pressed" from="Option3" to="." method="_on_Option3_pressed"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
