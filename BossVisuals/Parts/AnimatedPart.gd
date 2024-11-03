@@ -2,9 +2,14 @@ extends BossComponent
 class_name AnimatedPart
 
 var data: BossPartResource = null
+var is_destroyed = false
+signal destroyed
+
 
 func set_data(new_data: BossPartResource):
 	data = new_data
+	if data.projectile:
+		$Spawner.projectile_resource = data.projectile
 	play_idle_anim()
 	_set_data(new_data)
 	
@@ -35,6 +40,8 @@ var cur_anim_state = AnimationState.idle
 
 func _ready():
 	ready()
+	if has_node("AnimatedSprite"):
+		$AnimatedSprite.hide()
 
 func ready():
 	shake_target = $ShakeTarget
@@ -108,8 +115,9 @@ func play_attack_anim(anim_duration := 0.0):
 	play_tween(data.attack_tween, data.attack_tween_time)
 	anim_timer = anim_duration
 	_play_attack_anim(anim_duration)
+	
 	if has_node("Spawner"):
-		get_node("Spawner").try_spawn(global_position)
+		$Spawner.try_spawn(global_position)
 
 # override for component type specific behavior
 func _play_attack_anim(anim_duration):
@@ -129,3 +137,15 @@ func play_defend_anim(anim_duration := 0.0):
 # override for component type specific behavior
 func _play_defend_anim(anim_duration):
 	return
+	
+func destroy():
+	if not is_destroyed:
+		is_destroyed = true
+		$Damageable.call_deferred("queue_free")
+		$StaticBody2D.call_deferred("queue_free")
+		$ShakeTarget.hide()
+		$AnimatedSprite.show()
+		$AnimatedSprite.frame = 0
+		$AnimatedSprite.play("default")
+		prints("killing part")
+		emit_signal("destroyed")

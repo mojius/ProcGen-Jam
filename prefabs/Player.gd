@@ -10,15 +10,55 @@ var powerups = []
 var powerup_mode = 1
 export var powerup_radius = 75
 export var powerup_rotation_speed = 2.0
+export var destroy_time = 1.0
 
 func _physics_process(delta):
+	if not playable:
+		return
 	var direction: Vector2
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	body.move_and_slide(direction * SPEED)
 	
 func spawn():
-	$Player/Camera2D.current = true
+	playable = true
+	#$Player.invulnerable = true		
+	#$Player/Camera2D.current = true
+	#var tween = create_tween()
+	#$Player.position -= Vector2(100,0)
+	#tween.tween_property($Player, "position", $Player.position + Vector2(100,0), destroy_time)
+	#tween.tween_callback(self, "set_playable").set_delay()
 	
+
+func set_playable():
+	playable = true
+	$Player.invulnerable = false
+	$Player.reset_health()
+
+
+func destroy():
+	if playable:
+		$Player.invulnerable = true
+		playable = false
+		$Player/WitchVisual.die()
+		var tween = create_tween()
+		tween.set_parallel(true)
+		tween.set_ease(Tween.EASE_IN)
+		tween.set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property($Player/WitchVisual, "position", $Player/WitchVisual.position + Vector2(0,400), destroy_time)
+		tween.tween_property($Player/WitchVisual, "rotation", 4, destroy_time)
+		tween.tween_callback(self, "destroy_reset").set_delay(destroy_time)
+	
+func destroy_reset():
+	$Player/WitchVisual.spawn()
+	$Player/WitchVisual.rotation = 0
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property($Player/WitchVisual, "position", $Player/WitchVisual.position + Vector2(0,-400), destroy_time)
+	tween.tween_callback(self, "set_playable")
+	
+	
+
 func _process(delta):
 	var velocity := Vector2.ZERO
 	if playable:

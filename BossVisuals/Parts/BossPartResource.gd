@@ -18,3 +18,5 @@ export var attack_tween_time: float = 1.0
 export var defend_anim: SpriteFrames = null
 export(String, "", "shake", "stomp", "float", "jiggle") var defend_tween
 export var defend_tween_time: float = 1.0
+
+export(Resource) var projectile: Resource = null

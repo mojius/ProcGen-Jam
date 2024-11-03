@@ -28,7 +28,7 @@ func set_limb(var i: int, var limb: BossComponent):
 	limb_points[i].add_child(limb)
 	limb.position = Vector2.ZERO
 	if ("source_dir" in limb and limb_ref_points[i] is LimbPoint):
-		limb.source_dir = limb_ref_points[i].source_dir
+		limb.source_dir = limb_ref_points[i].source_dir.normalized()
 
 func get_limb(var i: int):
 	return limb_points[i].get_child(0)

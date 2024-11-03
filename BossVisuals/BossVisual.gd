@@ -1,7 +1,10 @@
 extends Node2D
 class_name BossVisual
 
-export var body_template: PackedScene
+export var body_diamond_template: PackedScene
+export var body_star_template: PackedScene
+export var body_vines_template: PackedScene
+
 export var neck_template: PackedScene
 export var part_template: PackedScene
 export var head_template: PackedScene
@@ -19,7 +22,8 @@ enum Components {
 	body,
 	neck,
 	part,
-	head
+	head,
+	none
 }
 
 # dict is expected in this format:
@@ -47,7 +51,16 @@ func build_boss(dict):
 	print(boss_dict)
 
 func build_body(dict, parent) -> BossBody:
-	var new_body = body_template.instance() as BossBody
+	var resource = dict["resource"] as BossBodyResource
+	var new_body: BossBody = null
+	if resource.body_type == BossBodyResource.BodyType.diamond:
+		new_body = body_diamond_template.instance() as BossBody
+	elif resource.body_type == BossBodyResource.BodyType.star:
+		new_body = body_star_template.instance() as BossBody
+	elif resource.body_type == BossBodyResource.BodyType.vines:
+		new_body = body_vines_template.instance() as BossBody
+	
+	
 	parent.add_child(new_body)
 	new_body.set_data(dict["resource"])
 	dict["node"] = new_body
@@ -60,6 +73,9 @@ func build_body(dict, parent) -> BossBody:
 		var next_part = dict["limbs"][i]
 		var new_part = null
 		
+		if next_part["type"] == Components.none:
+			continue
+			
 		if next_part["type"] == Components.body:
 			new_part = build_body(next_part, new_body)
 			

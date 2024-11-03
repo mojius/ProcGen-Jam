@@ -4,6 +4,9 @@ class_name BossHead
 onready var top: Node2D = $ShakeTarget/Sprite
 onready var jaw: Sprite = $ShakeTarget/Sprite/Jaw
 
+func _ready():
+	$AnimatedSprite.hide()
+
 func _set_data(new_data):
 	if new_data is BossHeadResource:
 		jaw.texture = new_data.jaw
@@ -57,6 +60,7 @@ func _play_charge_anim(_duration: float):
 	tweens.append(tween)
 
 func _play_attack_anim(duration: float):
+	$Damageable.invulnerable = false
 	var jaw_open_amount := 1.0
 	var jaw_open_time = duration * 0.05
 	var roar_time = duration * 0.7
@@ -69,14 +73,14 @@ func _play_attack_anim(duration: float):
 	tween.tween_property(jaw, "rotation", 0, jaw_close_time)
 	tweens.append(tween)
 	
+	if has_node("Spawner"):
+		$Spawner.try_spawn(global_position)
+	
 	var tween2 = create_tween()
 	tween2.tween_property(top, "rotation", deg2rad(40) * jaw_open_amount, jaw_open_time)
 	tween2.tween_interval(roar_time)
 	tween2.tween_property(top, "rotation", 0, jaw_close_time)
 	tweens.append(tween2)
-	
-	if has_node("Spawner"):
-		get_node("Spawner").try_spawn(global_position)
 
 func _play_defend_anim(_duration: float):
 	var tween = create_tween()
@@ -84,3 +88,5 @@ func _play_defend_anim(_duration: float):
 	tween.tween_interval(1.02)
 	tween.set_loops()
 	tweens.append(tween)
+	$Damageable.invulnerable = true
+	

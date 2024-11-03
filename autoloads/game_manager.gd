@@ -25,7 +25,7 @@ func spawn_player():
 	if player == null:
 		player = player_prefab.instance()
 		player_layer.add_child(player)
-		player.connect("hit", player, "spawn")
+		player.connect("hit", self, "spawn_player")
 	player.spawn()
 	return player
 	
@@ -36,3 +36,10 @@ func explosion(explosion_scene: PackedScene, position_: Vector2):
 	explosion.position = position_
 	explosion_layer.add_child(explosion)
 	explosion.explode()
+
+
+func destroy_all_projectiles():
+	for i in GameManager.player_projectile_layer.get_children():
+		i.queue_free()
+	for i in GameManager.enemy_projectile_layer.get_children():
+		i.queue_free()

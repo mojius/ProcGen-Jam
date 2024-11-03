@@ -1,10 +1,6 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var idx = -1
+var kind = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,10 +8,34 @@ func _ready():
 	$Area2D.connect("body_entered", self, "pickup")
 	
 func pickup(area):
-	prints("powerup pickup", area)
+	prints("powerup pickup", area, kind)
 	var current_list = get_parent().powerups
 	current_list.remove(current_list.find(self))
-	area.get_parent().powerups.append(self)
+	var player = area.get_parent() as Player
+	player.powerups.append(self)
+	var spawner = player.get_node("Player/Spawner") as Spawner
+	#sprints(kind, spawner, spawner.num_projectiles)
+	
+	match kind:
+		0:
+			spawner.num_projectiles += 2
+		1:
+			spawner.cooldown *= 0.5
+		2:
+			spawner.projectile_resource.travel_speed += 100
+		3:
+			spawner.projectile_resource.direct_damage *= 2
+		4:
+			spawner.projectile_resource.explosion_size *= 1
+		5:
+			spawner.spread_angle *= 0.5
+			#spawner.spread_delay *= 2
+		6:
+			spawner.projectile_resource.size *= 2
+			
+	
+	prints(spawner, spawner.num_projectiles)
+	
 	
 
 var colors = [
@@ -29,6 +49,7 @@ var colors = [
 ]
 
 func set_powerup(idx):
+	kind = idx
 	#$Circle1.hide()
 	#$Circle2.hide()
 	#$Circle2.hide()

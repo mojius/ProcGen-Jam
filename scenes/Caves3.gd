@@ -38,11 +38,18 @@ func _ready():
 	spawn_some_powerups()
 	
 func spawn_some_enemies():
+	spawn_new_boss()
+	
+	
+func spawn_new_boss():
+	if enemy_mover:
+		enemy_mover.queue_free()
 	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
 	enemy.position.x = 550
 	add_child(enemy)
+	enemy.connect("destroyed", self, "spawn_new_boss")
 	enemy_mover = enemy
-	
+
 func spawn_some_powerups():
 	var powerup_ = preload("res://prefabs/Powerup.tscn")
 	var num_powerups = 7

@@ -10,7 +10,6 @@ export var num_projectiles := 1
 export var spread_angle := 0.0
 export var spread_delay := 0.0
 export (Resource) var projectile_resource = ProjectileResource.new()
-export var homing_to_player := false
 export var rotate_direction_angle = false
 
 onready var homing_controller := preload("res://prefabs/ProjectileHomingController.tscn") as PackedScene
@@ -64,10 +63,9 @@ func actual_spawn(intensity: float, coords=null):
 				entity.projectile_resource = projectile_resource
 				if projectile_resource.size > 1.0:
 					entity.scale *= projectile_resource.size 
-			if homing_to_player:
-				prints("new projectile","homing_to_player")
-				var homing = homing_controller.instance() as HomingController
-				homing.homing_target = GameManager.player.get_node("Player")
-				entity.add_child(homing)
+				if projectile_resource.homing:
+					var homing = homing_controller.instance() as HomingController
+					homing.homing_target = GameManager.player.get_node("Player")
+					entity.add_child(homing)
 		if spread_delay > 0.0:
 			tween.play()

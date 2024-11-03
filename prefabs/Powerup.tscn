@@ -40,7 +40,7 @@ color_ramp = SubResource( 7 )
 offsets = PoolRealArray( 0, 0.393548, 0.645161, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=24]
 gradient = SubResource( 3 )
 width = 128
 
@@ -58,7 +58,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.1
 color = Color( 0.87451, 0.258824, 0.0156863, 1 )
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 24 )
 
 [sub_resource type="CircleShape2D" id=23]
 
