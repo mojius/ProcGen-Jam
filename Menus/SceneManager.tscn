@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Menus/SceneManager.gd" type="Script" id=1]
+[ext_resource path="res://Menus/MainMenu/Sprites/main-menu-back.png" type="Texture" id=2]
+[ext_resource path="res://Menus/MainMenu/MainMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Menus/SelectionMenu/SelectionMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Menus/SpellMenu/SpellMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BossVisuals/Testing/BossVisualTest.tscn" type="PackedScene" id=6]
+
+[node name="Node" type="Node"]
+script = ExtResource( 1 )
+main_menu = ExtResource( 3 )
+selection_menu = ExtResource( 4 )
+gameplay = ExtResource( 6 )
+spell_menu = ExtResource( 5 )
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = 500
+
+[node name="Transition" type="TextureRect" parent="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -167.0
+margin_top = -160.0
+margin_right = 1195.0
+margin_bottom = 805.0
+texture = ExtResource( 2 )
+expand = true
