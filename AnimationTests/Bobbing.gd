@@ -18,5 +18,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	position.y = (cos((Time.get_unix_time_from_system() * speed) + timing_offset) * magnitude) + half_mag + start_pos
