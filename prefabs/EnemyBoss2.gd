@@ -63,11 +63,11 @@ func build_static_boss():
 	})
 
 
-func build_random_boss_level(boss_seed):
+func build_random_boss_level(boss_seed: int, level := 1):
 	
-	randomize()
+	# randomize()
 	
-	var rand_body = atlas.boss_bodies[randi() % atlas.boss_bodies.size()]
+	var rand_body = atlas.boss_bodies[boss_seed % atlas.boss_bodies.size()]
 	var limb_count = BossPartAtlas.get_limb_count(rand_body)
 	
 	var dict = {
