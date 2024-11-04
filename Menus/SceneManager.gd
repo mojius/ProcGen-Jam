@@ -148,8 +148,10 @@ func start_fight():
 	scene_instance = gameplay.instance()
 	add_child(scene_instance)
 	# add the boss given the current seed
-	scene_instance.spawn_new_boss(paths[-1])
 	GameManager.spawn_player()
+	scene_instance.make_cave()
+	scene_instance.spawn_new_boss(paths[-1])
+	
 	# give initial spells to the player
 	for i in spells:
 		var powerup = power_up.instance() as PowerUp
