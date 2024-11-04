@@ -9,8 +9,8 @@ var is_destroyed = false
 func _ready():
 	$AnimatedSprite.hide()
 	$AnimatedSprite.connect("animation_finished", self, "emit_signal", ["destroyed"])
-	build_static_boss()
-	#build_random_boss_level()
+	
+func post_init():
 	parts_alive = $BossVisual.part_list
 	for part in parts_alive:
 		part.connect("destroyed", self, "destroyed", [part])
@@ -63,7 +63,7 @@ func build_static_boss():
 	})
 
 
-func build_random_boss_level():
+func build_random_boss_level(boss_seed):
 	
 	randomize()
 	
@@ -104,6 +104,8 @@ func build_random_boss_level():
 				"type": BossVisual.Components.part,
 				"resource": atlas.boss_parts[randi() % atlas.boss_parts.size()]
 			})
+	
+	$BossVisual.build_boss(dict)
 
 signal destroyed
 func destroyed(part):
