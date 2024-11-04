@@ -9,7 +9,7 @@ func cast_spell_anim(intensity: float):
 	$Broom/Torso/WandArm.cast_spell(intensity)
 
 func emit_wand_particles(intensity):
-	$WandParticles.lifetime = intensity
+	$WandParticles.lifetime = min(0.2, intensity)
 	$WandParticles.emitting = true
 
 func spawn():

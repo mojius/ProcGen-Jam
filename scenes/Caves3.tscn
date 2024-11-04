@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Caves3.gd" type="Script" id=1]
 [ext_resource path="res://sprites/bg/Desert Background Underground Layer 4.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://sprites/bg/Desert Background Underground Layer 3.png" type="Texture" id=5]
 [ext_resource path="res://sprites/bg/Desert Background Underground Layer 5.png" type="Texture" id=6]
 [ext_resource path="res://sprites/vfx/star_05.png" type="Texture" id=7]
-[ext_resource path="res://Audio/Combat.mp3" type="AudioStream" id=8]
 
 [sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
@@ -140,6 +139,3 @@ texture = ExtResource( 7 )
 [node name="PlayerProjectiles" type="Node2D" parent="."]
 
 [node name="EnemyProjectiles" type="Node2D" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
