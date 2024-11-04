@@ -11,7 +11,7 @@ func set_data(new_data: BossPartResource):
 	if data.projectile:
 		$Spawner.projectile_resource = data.projectile
 	# TODO not sure why this is broken, there are no sprites
-	#play_idle_anim()
+	play_idle_anim()
 	_set_data(new_data)
 	
 	
