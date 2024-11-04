@@ -32,7 +32,7 @@ var spell_options := []
 func combine_spell(spell1, spell2):
 	var new_spell = {"kind": 0, "power": 1.0}
 	new_spell["kind"] = (spell1["kind"] + spell2["kind"] + (randi() % 3)) % 7
-	new_spell["power"] = (spell1["power"] + spell2["power"]) * rand_range( min(spell1["power"], spell2["power"]) / (spell1["power"] + spell2["power"]), 1.0)
+	new_spell["power"] = max(spell1["power"], spell2["power"]) + rand_range(0.8, 1.2)
 	return new_spell
 
 func get_power_adj(power):
@@ -138,6 +138,14 @@ func start_fight():
 	
 	# TODO: set up level
 	
+	# build cur powerups
+	#var power_ups := []
+	#for s in spells:
+	#	var new_spell = power_up.instance() as PowerUp
+	#	add_child(new_spell)
+	#	new_spell.set_powerup(spell_options[0]["kind"], spell_options[0]["power"])
+	#	power_ups.append(new_spell)
+	
 	scene_instance.connect("on_level_end", self, "on_level_end")
 
 func on_level_end():
@@ -151,7 +159,7 @@ func open_spell_menu():
 	# TODO: add actual spells
 	var new_spell = power_up.instance() as PowerUp
 	add_child(new_spell)
-	new_spell.set_powerup(spell_options[0]["kind"], spell_options[0]["power"]) # set in on_pick_path()
+	new_spell.set_powerup(spell_options[0]["kind"], spell_options[0]["power"]) # spell option set in on_pick_path()
 	var new_spell_text = get_spell_name(spell_options[0])
 	scene_instance.set_new_spell(new_spell, new_spell_text)
 	
@@ -168,6 +176,7 @@ func open_spell_menu():
 	scene_instance.connect("on_option", self, "on_spell_combine")
 	scene_instance.connect("on_continue", self, "play_transition", ["pick_path"])
 
+# actual spell stats combining done in combine_spell() at the top of the file
 func on_spell_combine(i: int):
 	if spell_options.size() == 0:
 		return
