@@ -5,6 +5,13 @@ var data: BossPartResource = null
 var is_destroyed = false
 signal destroyed
 
+func set_health(health):
+	if has_node("Damageable"):
+		get_node("Damageable").set_health(health)
+
+func damage(damage):
+	if has_node("Damageable"):
+		get_node("Damageable").damage(damage)
 
 func set_data(new_data: BossPartResource):
 	data = new_data
