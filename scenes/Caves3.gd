@@ -34,17 +34,15 @@ func _ready():
 	GameManager.player_projectile_layer = $PlayerProjectiles
 	GameManager.enemy_projectile_layer = $EnemyProjectiles
 	
-	spawn_some_enemies()
-	spawn_some_powerups()
+	#GameManager.spawn_player()
 	
-func spawn_some_enemies():
-	spawn_new_boss()
-	
-	
-func spawn_new_boss():
+func spawn_new_boss(boss_seed):
 	if enemy_mover:
 		enemy_mover.queue_free()
 	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
+	#enemy.build_static_boss()
+	enemy.build_random_boss_level(21)
+	enemy.post_init()
 	enemy.position.x = 550
 	add_child(enemy)
 	enemy.connect("destroyed", self, "end_level")
@@ -52,7 +50,6 @@ func spawn_new_boss():
 	
 signal on_level_end
 func end_level():
-	# spawn_new_boss()
 	GameManager.player.playable = false
 	yield(get_tree().create_timer(2), "timeout")
 	GameManager.player.queue_free()

@@ -24,6 +24,8 @@ var level_power_mult := 0.5
 
 # the actually owned spells
 var spells := []
+# the actually choosen path
+var paths := []
 # working space for current options in spell menus
 var spell_options := []
 
@@ -97,8 +99,10 @@ func start_game():
 	scene_instance.set_title("PICK YOUR FIRST SPELL")
 	
 	spell_options.clear()
+	var all_spells = range(7)
+	all_spells.shuffle()
 	for i in range(3):
-		spell_options.append({"kind": randi() % 7, "power": 1.0})
+		spell_options.append({"kind": all_spells[i], "power": 1.0})
 		
 		var new_power_up = power_up.instance() as PowerUp
 		add_child(new_power_up)
@@ -128,12 +132,23 @@ func on_pick_path(i: int):
 	# TODO: set seed
 	spell_options.clear()
 	spell_options.append({"kind": randi() % 7, "power": level * level_power_mult})
+	paths.append(333)
 	play_transition("start_fight")
 	
 
 func start_fight():
 	scene_instance.queue_free()
 	scene_instance = gameplay.instance()
+	# add the boss given the current seed
+	scene_instance.spawn_new_boss(paths[-1])
+	GameManager.spawn_player()
+	# give initial spells to the player
+	for i in spells:
+		var powerup = power_up.instance()
+		scene_instance.add_child(powerup)
+		powerup.set_powerup(i["kind"])
+		powerup.pickup(GameManager.player.body)
+		GameManager.player.powerups.append(powerup)
 	add_child(scene_instance)
 	
 	# TODO: set up level
