@@ -41,10 +41,11 @@ func spawn_new_boss(boss_seed):
 		enemy_mover.queue_free()
 	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
 	#enemy.build_static_boss()
+	add_child(enemy)
 	enemy.build_random_boss_level(21)
 	enemy.post_init()
 	enemy.position.x = 550
-	add_child(enemy)
+	
 	enemy.connect("destroyed", self, "end_level")
 	enemy_mover = enemy
 	

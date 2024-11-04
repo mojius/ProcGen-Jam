@@ -139,6 +139,7 @@ func on_pick_path(i: int):
 func start_fight():
 	scene_instance.queue_free()
 	scene_instance = gameplay.instance()
+	add_child(scene_instance)
 	# add the boss given the current seed
 	scene_instance.spawn_new_boss(paths[-1])
 	GameManager.spawn_player()
@@ -149,7 +150,7 @@ func start_fight():
 		powerup.set_powerup(i["kind"])
 		powerup.pickup(GameManager.player.body)
 		GameManager.player.powerups.append(powerup)
-	add_child(scene_instance)
+	
 	
 	# TODO: set up level
 	
