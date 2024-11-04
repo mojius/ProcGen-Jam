@@ -97,6 +97,7 @@ func _ready():
 
 var transition_tween: SceneTreeTween
 func play_transition(func_to_call: String):
+	AudioManager.audio_continue.play()
 	$CanvasLayer/Node2D/Transition.visible = true
 	$CanvasLayer/Node2D/Transition.modulate = Color(1, 1, 1, 0)
 	transition_tween = create_tween()
@@ -131,6 +132,7 @@ func start_game():
 	scene_instance.connect("on_option", self, "on_pick_first_spell")
 	
 func on_pick_first_spell(i: int):
+	AudioManager.audio_blip.play()
 	spells.append(spell_options[i])
 	play_transition("pick_path")
 
@@ -153,6 +155,7 @@ func pick_path():
 	scene_instance.connect("on_option", self, "on_pick_path")
 
 func on_pick_path(i: int):
+	AudioManager.audio_blip.play()
 	var selected_option = spell_options[i]
 	spell_options.clear()
 	spell_options.append(selected_option)
@@ -211,6 +214,7 @@ func open_spell_menu():
 
 # actual spell stats combining done in combine_spell() at the top of the file
 func on_spell_combine(i: int):
+	AudioManager.audio_blip.play()
 	if spell_options.size() == 0:
 		return
 	
