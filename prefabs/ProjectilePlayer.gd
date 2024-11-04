@@ -37,12 +37,16 @@ func explode():
 func indirect_contact_area(area):
 	if area.has_method("damage"):
 		area.damage(projectile_resource.indirect_damage)
+	elif area is BodyBox:
+		area.damage_parts(projectile_resource.indirect_damage)
 	
 
 
 func area_entered(area):
 	if area.has_method("damage"):
 		area.damage(projectile_resource.direct_damage)
+	elif area is BodyBox:
+		area.damage_parts(projectile_resource.indirect_damage)
 	explode()
 
 func _process(delta):

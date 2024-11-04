@@ -19,6 +19,6 @@ func damage(power: float):
 		health -= power
 		$ProgressBar.value = health
 		
-		if health < 0.0:
+		if health <= 0.0:
 			get_parent().destroy()
 	
