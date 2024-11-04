@@ -1,8 +1,9 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://BossVisuals/Parts/Heads/BossHeadResource.gd" type="Script" id=1]
 [ext_resource path="res://BossVisuals/Parts/Heads/Dragon/dragon-jaw.png" type="Texture" id=2]
 [ext_resource path="res://BossVisuals/Parts/Heads/Dragon/dragon-idle.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://prefabs/many_weak.tres" type="Resource" id=4]
 
 [resource]
 script = ExtResource( 1 )
@@ -19,4 +20,5 @@ attack_tween_time = 1.0
 defend_anim = ExtResource( 3 )
 defend_tween = ""
 defend_tween_time = 1.0
+projectile = ExtResource( 4 )
 jaw = ExtResource( 2 )

@@ -17,11 +17,10 @@ func pickup(area):
 	var player = area.get_parent() as Player
 	player.powerups.append(self)
 	var spawner = player.get_node("Player/Spawner") as Spawner
-	#sprints(kind, spawner, spawner.num_projectiles)
 	
 	match kind:
 		0:
-			spawner.num_projectiles += 2 * int(power)
+			spawner.projectile_resource.num_projectiles += 2 * int(power)
 		1:
 			spawner.cooldown *= 0.5 * power
 		2:
@@ -31,13 +30,10 @@ func pickup(area):
 		4:
 			spawner.projectile_resource.explosion_size *= 1 * power
 		5:
-			spawner.spread_angle *= 0.5 * power
+			spawner.projectile_resource.spread_angle *= 0.5 * power
 			#spawner.spread_delay *= 2
 		6:
-			spawner.projectile_resource.size *= 2 * power
-			
-	
-	prints(spawner, spawner.num_projectiles)
+			spawner.projectile_resource.projectile_resource.size *= 2 * power
 	
 	
 

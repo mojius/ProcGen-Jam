@@ -5,10 +5,6 @@ export (PackedScene) var spawn_entity = null
 export var active_loop := true
 export var cooldown := 0.4
 
-
-export var num_projectiles := 1
-export var spread_angle := 0.0
-export var spread_delay := 0.0
 export (Resource) var projectile_resource = ProjectileResource.new()
 export var rotate_direction_angle = false
 
@@ -39,24 +35,24 @@ func try_spawn(coords: Vector2):
 func actual_spawn(intensity: float, coords=null):
 	if spawn_entity:
 		var tween: SceneTreeTween = null
-		if spread_delay > 0.0:
+		if projectile_resource.spread_delay > 0.0:
 			tween = create_tween()
-		for i in num_projectiles:
+		for i in projectile_resource.num_projectiles:
 			var entity := spawn_entity.instance() as Projectile
 			if coords==null:
 				entity.position = get_parent().position + position
 			else:
 				entity.position = coords
-			if spread_angle > 0.0:
-				var angle = PI * spread_angle / num_projectiles
-				angle = angle * (num_projectiles-1) / -2.0 + angle * i
+			if projectile_resource.spread_angle > 0.0:
+				var angle = PI * projectile_resource.spread_angle / projectile_resource.num_projectiles
+				angle = angle * (projectile_resource.num_projectiles-1) / -2.0 + angle * i
 				entity.direction = Vector2(cos(angle), sin(angle))
 			else:
 				entity.direction = Vector2.RIGHT
 			if rotate_direction_angle:
 				entity.direction = entity.direction.rotated(PI)
-			if spread_delay > 0.0:
-				tween.tween_callback(GameManager.player_projectile_layer, "add_child", [entity]).set_delay(spread_delay * cooldown / num_projectiles)
+			if projectile_resource.spread_delay > 0.0:
+				tween.tween_callback(GameManager.player_projectile_layer, "add_child", [entity]).set_delay(projectile_resource.spread_delay * cooldown / projectile_resource.num_projectiles)
 			else:
 				GameManager.player_projectile_layer.add_child(entity)
 			if projectile_resource:
@@ -67,5 +63,5 @@ func actual_spawn(intensity: float, coords=null):
 					var homing = homing_controller.instance() as HomingController
 					homing.homing_target = GameManager.player.get_node("Player")
 					entity.add_child(homing)
-		if spread_delay > 0.0:
+		if projectile_resource.spread_delay > 0.0:
 			tween.play()

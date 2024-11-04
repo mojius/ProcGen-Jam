@@ -5,13 +5,13 @@
 [resource]
 script = ExtResource( 1 )
 cooldown = 0.6
-num_projectiles = 1
-spread_angle = 1.0
-spread_delay = 0.0
-size = 2.0
-life_time = 10.0
-travel_speed = 200.0
-rotation_speed = 0.01
+num_projectiles = 10
+spread_angle = 0.01
+spread_delay = 1.0
+size = 1.0
+life_time = 30.0
+travel_speed = 600.0
+rotation_speed = 0.05
 direct_damage = 1.0
 indirect_damage = 0.5
 explosion_size = 3.0

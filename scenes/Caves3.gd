@@ -35,6 +35,7 @@ func _ready():
 	GameManager.enemy_projectile_layer = $EnemyProjectiles
 	
 	#GameManager.spawn_player()
+	#spawn_new_boss(123)
 	
 func spawn_new_boss(boss_seed):
 	if enemy_mover:

@@ -1,6 +1,10 @@
 extends Resource
 class_name ProjectileResource
 
+export(float) var cooldown := 0.6
+export(int) var num_projectiles := 1
+export(float) var spread_angle := 1.0
+export(float) var spread_delay := 0.0
 export(float) var size := 1.0
 export(float) var life_time := 30.0
 export(float) var travel_speed := 300.0
