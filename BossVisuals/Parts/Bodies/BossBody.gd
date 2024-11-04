@@ -31,6 +31,9 @@ func set_limb(var i: int, var limb: BossComponent):
 		limb.source_dir = limb_ref_points[i].source_dir.normalized()
 
 func get_limb(var i: int):
+	var limb_point = limb_points[i] as Node2D
+	if limb_point.get_child_count() == 0:
+		return null
 	return limb_points[i].get_child(0)
 
 func _process(_delta):

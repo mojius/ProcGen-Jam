@@ -159,7 +159,7 @@ func on_pick_path(i: int):
 	var selected_option = spell_options[i]
 	spell_options.clear()
 	spell_options.append(selected_option)
-	paths.append(selected_option["kind"] * randi())
+	paths.append(randi())
 	
 	play_transition("start_fight")
 	

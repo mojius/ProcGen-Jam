@@ -62,50 +62,93 @@ func build_static_boss():
 		]
 	})
 
+var total_parts := 0
+
+var saved_seed := 0
+func get_rand() -> int:
+	var next = rand_seed(saved_seed)
+	saved_seed = next[1]
+	return next[0]
+
+func get_randf() -> float:
+	return float(get_rand() % 1000000) / 1000000.0
 
 func build_random_boss_level(boss_seed: int, level := 1):
-	
+	print("building boss: " + String(boss_seed) + " " + String(level))
 	# randomize()
+	saved_seed = boss_seed
+	total_parts = level + int(rand_range(0, 2))
 	
-	var rand_body = atlas.boss_bodies[boss_seed % atlas.boss_bodies.size()]
-	var limb_count = BossPartAtlas.get_limb_count(rand_body)
+	$BossVisual.build_boss(gen_body(boss_seed, level, 1))
 	
+	for p in $BossVisual.part_list:
+		p = p as AnimatedPart
+		p.set_health(min(30.0, 5.0 + level))
+
+func gen_body(boss_seed, level, depth):
 	var dict = {
 		"type": BossVisual.Components.body,
-		"resource": rand_body,
+		"resource": atlas.boss_bodies[get_rand() % atlas.boss_bodies.size()],
 		"limbs": []
 	}
+	var limb_count = BossPartAtlas.get_limb_count(dict["resource"])
 	
 	for _i in range(limb_count):
-		var rand_part_roll = randf()
+		if total_parts <= 0:
+			break
 		
-		if rand_part_roll < 0.25:
+		var limb_roll := randf() # get_randf()
+		
+		if limb_roll < (0.2 / level) and total_parts > 1:
 			dict["limbs"].append({
 				"type": BossVisual.Components.none
 			})
+			print("adding nothing: " + String(total_parts))
+			total_parts -= 1
 		
-		elif rand_part_roll < 0.5:
-			dict["limbs"].append({
+		elif limb_roll < 0.7:
+			var neck = {
 				"type": BossVisual.Components.neck,
-				"part": {
+				"part": {}
+			}
+			
+			var next_limb_roll := randf() #get_randf()
+			
+			if next_limb_roll < (0.33 - (0.33 / total_parts)) and depth < 2:
+				neck["part"] = gen_body(boss_seed, level, depth + 1)
+			
+			elif next_limb_roll < 0.66:
+				neck["part"] = {
 					"type": BossVisual.Components.part,
-					"resource": atlas.boss_parts[randi() % atlas.boss_parts.size()]
+					"resource": atlas.boss_parts[get_rand() % atlas.boss_parts.size()]
 				}
-			})
+			
+			else:
+				neck["part"] = {
+					"type": BossVisual.Components.head,
+					"resource": atlas.boss_heads[get_rand() % atlas.boss_parts.size()]
+				}
+			
+			dict["limbs"].append(neck)
+			total_parts -= 1
 		
-		elif rand_part_roll < 0.75:
+		elif limb_roll < 0.85:
 			dict["limbs"].append({
-				"type": BossVisual.Components.head,
-				"resource": atlas.boss_heads[randi() % atlas.boss_heads.size()]
-			})
+					"type": BossVisual.Components.part,
+					"resource": atlas.boss_parts[get_rand() % atlas.boss_parts.size()]
+				})
+			total_parts -= 1
 		
 		else:
 			dict["limbs"].append({
-				"type": BossVisual.Components.part,
-				"resource": atlas.boss_parts[randi() % atlas.boss_parts.size()]
-			})
+					"type": BossVisual.Components.head,
+					"resource": atlas.boss_heads[get_rand() % atlas.boss_parts.size()]
+				})
+			total_parts -= 1
+		
+	return dict
 	
-	$BossVisual.build_boss(dict)
+	
 
 signal destroyed
 func destroyed(part):
