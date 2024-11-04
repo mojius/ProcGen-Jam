@@ -1,6 +1,8 @@
 extends Node2D
+class_name PowerUp
 
 var kind = -1
+var power := 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,20 +20,20 @@ func pickup(area):
 	
 	match kind:
 		0:
-			spawner.num_projectiles += 2
+			spawner.num_projectiles += 2 * int(power)
 		1:
-			spawner.cooldown *= 0.5
+			spawner.cooldown *= 0.5 * power
 		2:
-			spawner.projectile_resource.travel_speed += 100
+			spawner.projectile_resource.travel_speed += 100 * power
 		3:
-			spawner.projectile_resource.direct_damage *= 2
+			spawner.projectile_resource.direct_damage *= 2 * power
 		4:
-			spawner.projectile_resource.explosion_size *= 1
+			spawner.projectile_resource.explosion_size *= 1 * power
 		5:
-			spawner.spread_angle *= 0.5
+			spawner.spread_angle *= 0.5 * power
 			#spawner.spread_delay *= 2
 		6:
-			spawner.projectile_resource.size *= 2
+			spawner.projectile_resource.size *= 2 * power
 			
 	
 	prints(spawner, spawner.num_projectiles)
@@ -48,8 +50,9 @@ var colors = [
 	Color.limegreen
 ]
 
-func set_powerup(idx):
+func set_powerup(idx, pwr := 1.0):
 	kind = idx
+	power = pwr
 	#$Circle1.hide()
 	#$Circle2.hide()
 	#$Circle2.hide()

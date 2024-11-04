@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Menus/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Menus/MainMenu/Sprites/main-menu-back.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Menus/SelectionMenu/SelectionMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Menus/SpellMenu/SpellMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Caves3.tscn" type="PackedScene" id=6]
+[ext_resource path="res://prefabs/Powerup.tscn" type="PackedScene" id=7]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
@@ -13,6 +14,7 @@ main_menu = ExtResource( 3 )
 selection_menu = ExtResource( 4 )
 gameplay = ExtResource( 6 )
 spell_menu = ExtResource( 5 )
+power_up = ExtResource( 7 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
