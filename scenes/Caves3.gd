@@ -41,13 +41,13 @@ func make_cave():
 	
 
 	
-func spawn_new_boss(boss_seed):
+func spawn_new_boss(boss_seed, level := 1):
 	if enemy_mover:
 		enemy_mover.queue_free()
 	var enemy = preload("res://prefabs/EnemyBoss2.tscn").instance()
 	#enemy.build_static_boss()
 	add_child(enemy)
-	enemy.build_random_boss_level(21)
+	enemy.build_random_boss_level(boss_seed, level)
 	enemy.post_init()
 	enemy.position.x = 550
 	enemy.connect("destroyed", self, "end_level")

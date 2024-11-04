@@ -53,7 +53,7 @@ func get_spell_name(spell):
 	var text := ""
 	match spell["kind"]:
 		0:
-			text = "multi-shot"
+			text = "spread-shot"
 		1:
 			text = "rapid fire"
 		2:
@@ -63,10 +63,28 @@ func get_spell_name(spell):
 		4:
 			text = "explosion"
 		5:
-			text = "spread-shot"
+			text = "focus"
 		6:
 			text = "asteroid"
 	return get_power_adj(spell["power"]) + " " + text
+
+func get_path_name(i) -> String:
+	match i:
+		0:
+			return "A deadly"
+		1:
+			return "An aggressive"
+		2:
+			return "A lightning fast"
+		3:
+			return "A formidable"
+		4:
+			return "An explosive"
+		5:
+			return "A dangerous"
+		6:
+			return "An overwhelming"
+	return "A formidable"
 
 # sceneflow
 
@@ -102,7 +120,7 @@ func start_game():
 	var all_spells = range(7)
 	all_spells.shuffle()
 	for i in range(3):
-		spell_options.append({"kind": all_spells[i], "power": 1.0})
+		spell_options.append({"kind": all_spells[i], "power": 1.0 + rand_range(0.0, min(2.0, level * level_power_mult))})
 		
 		var new_power_up = power_up.instance() as PowerUp
 		add_child(new_power_up)
@@ -130,15 +148,15 @@ func pick_path():
 		var new_power_up = power_up.instance() as PowerUp
 		add_child(new_power_up)
 		new_power_up.set_powerup(spell_options[i]["kind"], spell_options[i]["power"])
-		scene_instance.set_option(i, new_power_up, "A formidable foe")
-		scene_instance.connect("on_option", self, "on_pick_path")
+		scene_instance.set_option(i, new_power_up, get_path_name(spell_options[i]["kind"]) + " foe")
+		
+	scene_instance.connect("on_option", self, "on_pick_path")
 
 func on_pick_path(i: int):
-	# TODO: set seed
+	var selected_option = spell_options[i]
 	spell_options.clear()
-	spell_options.append({"kind": randi() % 7, "power": level * level_power_mult})
-	paths.append(333)
-	
+	spell_options.append(selected_option)
+	paths.append(selected_option["kind"] * randi())
 	
 	play_transition("start_fight")
 	
@@ -150,7 +168,7 @@ func start_fight():
 	# add the boss given the current seed
 	GameManager.spawn_player()
 	scene_instance.make_cave()
-	scene_instance.spawn_new_boss(paths[-1])
+	scene_instance.spawn_new_boss(paths[-1], level)
 	
 	# give initial spells to the player
 	for i in spells:
@@ -160,19 +178,10 @@ func start_fight():
 		powerup.pickup(GameManager.player.body)
 		GameManager.player.powerups.append(powerup)
 	
-	# TODO: set up level
-	
-	# build cur powerups
-	#var power_ups := []
-	#for s in spells:
-	#	var new_spell = power_up.instance() as PowerUp
-	#	add_child(new_spell)
-	#	new_spell.set_powerup(spell_options[0]["kind"], spell_options[0]["power"])
-	#	power_ups.append(new_spell)
-	
 	scene_instance.connect("on_level_end", self, "on_level_end")
 
 func on_level_end():
+	level += 1
 	play_transition("open_spell_menu")
 
 func open_spell_menu():
