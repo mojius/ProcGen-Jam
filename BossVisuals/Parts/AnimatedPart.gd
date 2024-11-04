@@ -150,6 +150,7 @@ func _play_defend_anim(anim_duration):
 func destroy():
 	if not is_destroyed:
 		is_destroyed = true
+		AudioManager.audio_boss_die.play()
 		$Damageable.call_deferred("queue_free")
 		$StaticBody2D.call_deferred("queue_free")
 		$ShakeTarget.hide()

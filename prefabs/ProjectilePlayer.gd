@@ -8,8 +8,10 @@ var projectile_resource: ProjectileResource = null
 var deadline := 0.0
 
 func _ready():
+	AudioManager.audio_shoot.play()
 	$Area2D.connect("area_entered", self, "area_entered")
 	$Area2D.connect("body_entered", self, "area_entered")
+	# $ProjectileSound.play()
 
 
 func explode():
@@ -18,8 +20,9 @@ func explode():
 		return
 	traveling = false
 	exploding = true
-	$sprite.hide()	
+	$sprite.hide()
 	if projectile_resource.explosion_size > 1.0:
+		AudioManager.audio_boom.play()
 		$explosion.show()
 		$explosion.scale *= projectile_resource.explosion_size
 		var explosion_area = $Area2D.duplicate()

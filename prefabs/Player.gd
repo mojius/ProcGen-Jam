@@ -47,6 +47,7 @@ func set_vulnerable():
 
 func destroy():
 	if playable:
+		AudioManager.audio_die.play()
 		$Player.invulnerable = true
 		playable = false
 		$Player/WitchVisual.die()
