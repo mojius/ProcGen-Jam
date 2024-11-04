@@ -3,7 +3,7 @@ class_name Player
 signal hit
 
 var playable := true
-var SPEED := 200.0
+export var SPEED := 200.0
 onready var body = $Player
 onready var spawner = $Player/Spawner
 var powerups = []
