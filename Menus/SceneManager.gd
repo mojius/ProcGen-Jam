@@ -20,7 +20,7 @@ var cur_scene = Scenes.main
 var scene_instance: Node
 
 var level := 1
-var level_power_mult := 0.5
+var level_power_mult := 0.6
 
 # the actually owned spells
 var spells := []
@@ -33,8 +33,8 @@ var spell_options := []
 
 func combine_spell(spell1, spell2):
 	var new_spell = {"kind": 0, "power": 1.0}
-	new_spell["kind"] = (spell1["kind"] + spell2["kind"] + (randi() % 3)) % 7
-	new_spell["power"] = max(spell1["power"], spell2["power"]) + rand_range(0.8, 1.2)
+	new_spell["kind"] = (spell1["kind"] + spell2["kind"]) % 7
+	new_spell["power"] = max(spell1["power"], spell2["power"]) + rand_range(1, 3)
 	return new_spell
 
 func get_power_adj(power):

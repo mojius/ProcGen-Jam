@@ -21,12 +21,15 @@ func explode():
 	traveling = false
 	exploding = true
 	$sprite.hide()
-	if projectile_resource.explosion_size > 1.0:
+	
+	var explosion_size = projectile_resource.explosion_size + projectile_resource.added_explosion_size
+	
+	if explosion_size > 1.0:
 		AudioManager.audio_boom.play()
 		$explosion.show()
-		$explosion.scale *= projectile_resource.explosion_size
+		$explosion.scale *= explosion_size
 		var explosion_area = $Area2D.duplicate()
-		explosion_area.scale *= projectile_resource.explosion_size
+		explosion_area.scale *= explosion_size
 		explosion_area.connect("area_entered", self, "indirect_contact_area")
 		explosion_area.connect("body_entered", self, "indirect_contact_area")
 		call_deferred("add_child", explosion_area)
@@ -47,7 +50,7 @@ func indirect_contact_area(area):
 
 func area_entered(area):
 	if area.has_method("damage"):
-		area.damage(projectile_resource.direct_damage)
+		area.damage(projectile_resource.direct_damage + projectile_resource.added_damage)
 	elif area is BodyBox:
 		area.damage_parts(projectile_resource.indirect_damage)
 	explode()
@@ -58,5 +61,5 @@ func _process(delta):
 	if deadline < GameManager.elapsed:
 		explode()
 	if traveling:
-		translate(direction*projectile_resource.travel_speed*delta)
+		translate(direction*(projectile_resource.travel_speed + projectile_resource.speed_up)*delta)
 		rotation += delta

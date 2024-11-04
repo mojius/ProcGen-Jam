@@ -20,20 +20,20 @@ func pickup(area):
 	
 	match kind:
 		0:
-			spawner.projectile_resource.num_projectiles += 2 * int(power)
+			spawner.projectile_resource.added_projectiles = 2 * int(power)
 		1:
 			spawner.cooldown = max(0.1, spawner.cooldown - (0.1 * power))
 		2:
-			spawner.projectile_resource.travel_speed += 100 * power
+			spawner.projectile_resource.speed_up = 100 * power
 		3:
-			spawner.projectile_resource.direct_damage *= 2 * power
+			spawner.projectile_resource.added_damage = 2 * power
 		4:
-			spawner.projectile_resource.explosion_size += power
+			spawner.projectile_resource.added_explosion_size = power
 		5:
-			spawner.projectile_resource.spread_angle *= 0.5 * power
+			spawner.projectile_resource.added_spread_angle = 0.5 * power
 			#spawner.spread_delay *= 2
 		6:
-			spawner.projectile_resource.size += power
+			spawner.projectile_resource.added_size = power
 	
 	
 

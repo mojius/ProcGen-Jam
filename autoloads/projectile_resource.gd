@@ -27,3 +27,11 @@ effects:
   burn/poison/damage over time
   spawn secondary projectiles
 """
+
+var added_projectiles := 0
+var cooldown_reduction := 0.0
+var speed_up := 0.0
+var added_damage := 0.0
+var added_explosion_size := 0.0
+var added_spread_angle := 1.0
+var added_size := 0.0

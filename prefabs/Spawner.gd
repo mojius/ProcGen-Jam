@@ -34,31 +34,35 @@ func try_spawn(coords: Vector2):
 
 func actual_spawn(intensity: float, coords=null):
 	if spawn_entity:
+		var projectiles = projectile_resource.num_projectiles + projectile_resource.added_projectiles
+		var spread_angle = projectile_resource.spread_angle * projectile_resource.added_spread_angle
+		var size = projectile_resource.size + projectile_resource.added_size
+		
 		var tween: SceneTreeTween = null
 		if projectile_resource.spread_delay > 0.0:
 			tween = create_tween()
-		for i in projectile_resource.num_projectiles:
+		for i in projectiles:
 			var entity := spawn_entity.instance() as Projectile
 			if coords==null:
 				entity.position = get_parent().position + position
 			else:
 				entity.position = coords
-			if projectile_resource.spread_angle > 0.0:
-				var angle = PI * projectile_resource.spread_angle / projectile_resource.num_projectiles
-				angle = angle * (projectile_resource.num_projectiles-1) / -2.0 + angle * i
+			if spread_angle > 0.0:
+				var angle = PI * spread_angle / projectiles
+				angle = angle * (projectiles-1) / -2.0 + angle * i
 				entity.direction = Vector2(cos(angle), sin(angle))
 			else:
 				entity.direction = Vector2.RIGHT
 			if rotate_direction_angle:
 				entity.direction = entity.direction.rotated(PI)
 			if projectile_resource.spread_delay > 0.0:
-				tween.tween_callback(GameManager.player_projectile_layer, "add_child", [entity]).set_delay(projectile_resource.spread_delay * cooldown / projectile_resource.num_projectiles)
+				tween.tween_callback(GameManager.player_projectile_layer, "add_child", [entity]).set_delay(projectile_resource.spread_delay * cooldown / projectiles)
 			else:
 				GameManager.player_projectile_layer.add_child(entity)
 			if projectile_resource:
 				entity.projectile_resource = projectile_resource
 				if projectile_resource.size > 1.0:
-					entity.scale *= projectile_resource.size 
+					entity.scale *= size
 				if projectile_resource.homing:
 					var homing = homing_controller.instance() as HomingController
 					homing.homing_target = GameManager.player.get_node("Player")
