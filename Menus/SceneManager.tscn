@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Menus/SceneManager.gd" type="Script" id=1]
 [ext_resource path="res://Menus/MainMenu/Sprites/main-menu-back.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Menus/SpellMenu/SpellMenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Caves3.tscn" type="PackedScene" id=6]
 [ext_resource path="res://prefabs/Powerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Audio/Combat.mp3" type="AudioStream" id=8]
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
@@ -32,3 +33,8 @@ margin_bottom = 805.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -8.0
+autoplay = true
