@@ -83,7 +83,7 @@ func build_random_boss_level(boss_seed: int, level := 1):
 	
 	for p in $BossVisual.part_list:
 		p = p as AnimatedPart
-		p.set_health(min(30.0, 5.0 + level))
+		p.set_health(min(100.0, 5.0 + (1.5 * level)))
 
 func gen_body(boss_seed, level, depth):
 	var dict = {
