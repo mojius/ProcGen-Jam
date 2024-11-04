@@ -23,6 +23,8 @@ var player_prefab := preload("res://prefabs/Player.tscn") as PackedScene
 
 func spawn_player():
 	if player == null:
+		if not player_layer:
+			player_layer = get_tree().current_scene
 		player = player_prefab.instance()
 		player_layer.add_child(player)
 		player.connect("hit", self, "spawn_player")
