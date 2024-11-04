@@ -12,7 +12,8 @@ func _ready():
 func pickup(area):
 	prints("powerup pickup", area, kind)
 	var current_list = get_parent().powerups
-	current_list.remove(current_list.find(self))
+	if self in current_list:
+		current_list.remove(current_list.find(self))
 	var player = area.get_parent() as Player
 	player.powerups.append(self)
 	var spawner = player.get_node("Player/Spawner") as Spawner
