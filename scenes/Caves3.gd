@@ -46,7 +46,6 @@ func spawn_new_boss(boss_seed):
 	enemy.build_random_boss_level(21)
 	enemy.post_init()
 	enemy.position.x = 550
-	
 	enemy.connect("destroyed", self, "end_level")
 	enemy_mover = enemy
 	
