@@ -122,17 +122,24 @@ func pick_path():
 	$CanvasLayer.add_child(scene_instance)
 	scene_instance.set_title("WHICH PATH WILL YOU CHOOSE")
 	
-	# TODO: add actual seeds
+	var all_spells = range(7)
+	all_spells.shuffle()
 	for i in range(3):
-		scene_instance.set_option(i, Node2D.new(), "Seed info...")
-	
-	scene_instance.connect("on_option", self, "on_pick_path")
+		spell_options.append({"kind": all_spells[i], "power": 1.0})
+		
+		var new_power_up = power_up.instance() as PowerUp
+		add_child(new_power_up)
+		new_power_up.set_powerup(spell_options[i]["kind"], spell_options[i]["power"])
+		scene_instance.set_option(i, new_power_up, "A formidable foe")
+		scene_instance.connect("on_option", self, "on_pick_path")
 
 func on_pick_path(i: int):
 	# TODO: set seed
 	spell_options.clear()
 	spell_options.append({"kind": randi() % 7, "power": level * level_power_mult})
 	paths.append(333)
+	
+	
 	play_transition("start_fight")
 	
 
@@ -141,8 +148,10 @@ func start_fight():
 	scene_instance = gameplay.instance()
 	add_child(scene_instance)
 	# add the boss given the current seed
-	scene_instance.spawn_new_boss(paths[-1])
 	GameManager.spawn_player()
+	scene_instance.make_cave()
+	scene_instance.spawn_new_boss(paths[-1])
+	
 	# give initial spells to the player
 	for i in spells:
 		var powerup = power_up.instance() as PowerUp

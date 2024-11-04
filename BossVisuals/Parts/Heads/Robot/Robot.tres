@@ -1,10 +1,11 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=7 format=2]
 
 [ext_resource path="res://BossVisuals/Parts/Heads/BossHeadResource.gd" type="Script" id=1]
 [ext_resource path="res://BossVisuals/Parts/Heads/Robot/robot-defend.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://BossVisuals/Parts/Heads/Robot/robot-attack.tres" type="SpriteFrames" id=3]
 [ext_resource path="res://BossVisuals/Parts/Heads/Robot/robot-idle.tres" type="SpriteFrames" id=4]
 [ext_resource path="res://BossVisuals/Parts/Heads/Robot/robot-jaw.png" type="Texture" id=5]
+[ext_resource path="res://prefabs/machinegun.tres" type="Resource" id=6]
 
 [resource]
 script = ExtResource( 1 )
@@ -21,4 +22,5 @@ attack_tween_time = 1.0
 defend_anim = ExtResource( 2 )
 defend_tween = ""
 defend_tween_time = 1.0
+projectile = ExtResource( 6 )
 jaw = ExtResource( 5 )

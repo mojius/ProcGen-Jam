@@ -119,7 +119,15 @@ func destroyed(part):
 		$AnimatedSprite.show()
 		$BossVisual.hide()
 		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("default")
+		$AnimatedSprite.playing = false
+		$AnimatedSprite.animation = "default"
+		var tween = create_tween()
+		for i in 10:
+			var explosion = $AnimatedSprite.duplicate()
+			add_child(explosion)
+			explosion.position += Vector2(randi()%100-50, randi()%100-50)
+			tween.tween_callback(explosion, "play", ["default"]).set_delay(0.2)
+		tween.tween_callback($AnimatedSprite, "play", ["default"]).set_delay(0.2)
 		GameManager.destroy_all_projectiles()
 		prints("boss destroyed")
 

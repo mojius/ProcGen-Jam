@@ -12,6 +12,16 @@ var enemy_mover = null
 var powerups = []
 
 func _ready():
+	GameManager.player_layer = $Player
+	GameManager.enemy_layer = $Enemies
+	GameManager.player_projectile_layer = $PlayerProjectiles
+	GameManager.enemy_projectile_layer = $EnemyProjectiles
+	pass
+	#GameManager.spawn_player()
+	#spawn_new_boss(123)
+	#make_cave()
+	
+func make_cave():
 	var max_height = 500	
 	prev_cave = [-max_height / 2, max_height / 2, 0]
 	GameManager.level_layer = $Level
@@ -21,7 +31,7 @@ func _ready():
 	GameManager.level_layer.add_child(last_cave)
 	prev_cave = last_cave.make_cave(prev_cave)
 
-	player = GameManager.spawn_player()
+	player = GameManager.player
 	player.get_node("Player").position.y = (prev_cave[0]+prev_cave[1])/2
 	
 	next_cave = cave_prefab.instance()
@@ -29,12 +39,7 @@ func _ready():
 	GameManager.level_layer.add_child(next_cave)
 	prev_cave = next_cave.make_cave(prev_cave)
 	
-	GameManager.player_layer = $Player
-	GameManager.enemy_layer = $Enemies
-	GameManager.player_projectile_layer = $PlayerProjectiles
-	GameManager.enemy_projectile_layer = $EnemyProjectiles
-	
-	#GameManager.spawn_player()
+
 	
 func spawn_new_boss(boss_seed):
 	if enemy_mover:

@@ -32,8 +32,17 @@ func spawn():
 
 func set_playable():
 	playable = true
-	$Player.invulnerable = false
+	#$Player.invulnerable = fals
+	$Player.invulnerable = true
 	$Player.reset_health()
+	$Player/WitchVisual/shield.modulate = Color.white
+	var tween = create_tween()
+	tween.tween_property($Player/WitchVisual/shield, "modulate", Color(1,1,1,0), 1.0)
+	tween.tween_callback(self, "set_vulnerable")
+	
+	
+func set_vulnerable():
+	$Player.invulnerable = false
 
 
 func destroy():
@@ -57,6 +66,8 @@ func destroy_reset():
 	tween.set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property($Player/WitchVisual, "position", $Player/WitchVisual.position + Vector2(0,-400), destroy_time)
 	tween.tween_callback(self, "set_playable")
+	$Player/WitchVisual/shield.show()
+	$Player/WitchVisual/shield.modulate = Color.white
 	
 	
 
